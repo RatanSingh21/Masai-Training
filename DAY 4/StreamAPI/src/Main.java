@@ -1,6 +1,12 @@
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.stream.Collectors;
+
+
+// How of Stream API works..
+// Source -> A collection (like list map )
+// Intermediate Operation -> like filter(), map ()
+// Terminal Operation -> like collect(), forEach()
+
 
 public class Main {
     public static void main(String[] args) {
@@ -8,10 +14,10 @@ public class Main {
 
         // Stream API
         names.stream()
-                .filter(n-> n.startsWith("R"))
+                .filter(n-> n.startsWith("R")) // operation starts
                 .map(n-> n.toUpperCase())
                 .sorted()
-                .forEach(n-> System.out.println(n));
+                .forEach(n-> System.out.println(n)); // Terminal operation
 
 
         // Storing in new variable
