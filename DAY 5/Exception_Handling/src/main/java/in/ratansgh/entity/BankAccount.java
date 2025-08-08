@@ -8,6 +8,7 @@ public class BankAccount {
     private String custName;
     private long custAccountNumber;
     private double custAccountBalance;
+    private double limit;;
 
     // Getter  and Setter
     public int getCustID() {
@@ -42,19 +43,23 @@ public class BankAccount {
         this.custAccountBalance = custAccountBalance;
     }
 
+    public double getLimit() {
+        return limit;
+    }
+
+    public void setLimit(double limit) {
+        this.limit = limit;
+    }
+
     // Constructor
     public BankAccount(){}
 
-    public BankAccount(int custID, String custName, long custAccountNumber, double custAccountBalance) {
+    public BankAccount(int custID, String custName, long custAccountNumber, double custAccountBalance, double limit) {
         this.custID = custID;
         this.custName = custName;
         this.custAccountNumber = custAccountNumber;
         this.custAccountBalance = custAccountBalance;
+        this.limit = limit;
+
     }
-
-
-    // Interface Methods..
-
-
-
 }

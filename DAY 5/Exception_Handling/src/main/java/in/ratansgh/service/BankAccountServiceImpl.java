@@ -1,6 +1,7 @@
 package in.ratansgh.service;
 
 import in.ratansgh.entity.BankAccount;
+import in.ratansgh.exception.Exceedlimit;
 import in.ratansgh.exception.InsufficientBalance;
 
 public class BankAccountServiceImpl implements BankAccountService {
@@ -30,6 +31,7 @@ public class BankAccountServiceImpl implements BankAccountService {
         } else{
             account.setCustAccountBalance(account.getCustAccountBalance() - amount);
         }
+
         System.out.println("After withdrawing " + amount + " the balance is : " + account.getCustAccountBalance());
         return account.getCustAccountBalance();
 
@@ -37,7 +39,18 @@ public class BankAccountServiceImpl implements BankAccountService {
 
     @Override
     public double depositAmount(BankAccount account, double amount) {
-         account.setCustAccountBalance(account.getCustAccountBalance() + amount);
+
+        if (amount > account.getLimit()){
+            try{
+                System.out.println("You have exceeded the limit of: " + account.getLimit());
+            } catch (Exceedlimit e) {
+                System.out.println(e.getMessage());
+            }
+        } else{
+            account.setCustAccountBalance(account.getCustAccountBalance() + amount);
+
+        }
+
         System.out.println("After depositing " + amount + " the balance is: " + account.getCustAccountBalance());
         return account.getCustAccountBalance();
     }
