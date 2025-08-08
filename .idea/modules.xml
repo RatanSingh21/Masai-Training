@@ -12,9 +12,9 @@
       <module fileurl="file://$PROJECT_DIR$/DAY 4/Interface/Interface.iml" filepath="$PROJECT_DIR$/DAY 4/Interface/Interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 1/Masai_Learning-main/JavaAssignment-01/JavaAssignment-01.iml" filepath="$PROJECT_DIR$/DAY 1/Masai_Learning-main/JavaAssignment-01/JavaAssignment-01.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 1/Masai_Learning-main/MyApp/MyApp.iml" filepath="$PROJECT_DIR$/DAY 1/Masai_Learning-main/MyApp/MyApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DAY 3/Inheritance and Method Overriding/Polymorphism and Object Casting.iml" filepath="$PROJECT_DIR$/DAY 3/Inheritance and Method Overriding/Polymorphism and Object Casting.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DAY 5/Exception Handling/Stream API.iml" filepath="$PROJECT_DIR$/DAY 5/Exception Handling/Stream API.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DAY 4/StreamAPI/StreamAPI Basics.iml" filepath="$PROJECT_DIR$/DAY 4/StreamAPI/StreamAPI Basics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DAY 3/Polymorphism and Object Casting/Polymorphism and Object Casting.iml" filepath="$PROJECT_DIR$/DAY 3/Polymorphism and Object Casting/Polymorphism and Object Casting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DAY 5/Stream API/Stream API.iml" filepath="$PROJECT_DIR$/DAY 5/Stream API/Stream API.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DAY 4/StreamAPI Basics/StreamAPI Basics.iml" filepath="$PROJECT_DIR$/DAY 4/StreamAPI Basics/StreamAPI Basics.iml" />
     </modules>
   </component>
 </project>
