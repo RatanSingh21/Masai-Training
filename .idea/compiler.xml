@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Java_Assisgnment_04" />
         <module name="Capstone_Project" />
       </profile>
     </annotationProcessing>
