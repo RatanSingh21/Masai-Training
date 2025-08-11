@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Java_Assisgnment_04" />
         <module name="Capstone_Project" />
+        <module name="Assignment06" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

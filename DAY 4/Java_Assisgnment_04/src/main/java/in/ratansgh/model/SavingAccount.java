@@ -1,6 +1,6 @@
 package in.ratansgh.model;
 
-public abstract class SavingAccount extends Account{
+public class SavingAccount extends Account{
 
     public SavingAccount(String accountNumber, String customerName, double balance) {
         super(accountNumber, customerName, balance);

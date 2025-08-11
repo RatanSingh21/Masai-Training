@@ -4,6 +4,7 @@ import in.ratansgh.constant.BankConstants;
 import in.ratansgh.constant.MessagePrinter;
 import in.ratansgh.model.Account;
 import in.ratansgh.model.AccountType;
+import in.ratansgh.model.SavingAccount;
 import in.ratansgh.service.Implementation.CardTransaction;
 import in.ratansgh.service.Implementation.UPITransaction;
 import in.ratansgh.service.Interface.InterestCalculator;
@@ -126,18 +127,18 @@ public class Main {
         System.out.println("Bank Name :"+ Constants.BANK_NAME);
         System.out.println("IFSC Code: " + Constants.IFSC_CODE);
 
-        // Up casting
-        // Remember while upcasting new keyword is required
-//        Account acc;
-//        acc = new SavingsAccount("SB123", "Ravi Kumar", 20000.0);
-//        acc.printAccountDetails(); // Works because method is inherited
-//
-//        //Downcasting
-//        // new keyword is not required
-//        if(acc instanceof SavingsAccount){
-//            SavingsAccount sa = (SavingsAccount) acc;
-//            sa.applyCashback("\n Thank you", 5);
-//        }
+//         Up casting
+//         Remember while upcasting new keyword is required
+        Account acc;
+        acc = new SavingAccount("SB123", "Ravi Kumar", 20000.0);
+        acc.printAccountDetails(); // Works because method is inherited
+
+        //Downcasting
+        // new keyword is not required
+        if(acc instanceof SavingAccount){
+            SavingAccount sa = (SavingAccount) acc;
+            sa.applyCashback("\nThank you", 5);
+        }
 
     }
 
