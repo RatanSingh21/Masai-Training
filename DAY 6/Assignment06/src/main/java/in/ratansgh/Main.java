@@ -55,7 +55,7 @@ public class Main {
         // === Display Customers Sorted by Name (TreeMap) ===
         System.out.println("\n--- Customers Sorted by Name ---");
         TreeMap<String, Customer> sortedByName = new TreeMap<>();
-        for (Customer cust : getAllCustomers(service)) {
+        for (Customer cust : service.getAllCustomers()) {
             sortedByName.put(cust.getName(), cust);
         }
         for (Map.Entry<String, Customer> entry : sortedByName.entrySet()) {
@@ -64,7 +64,7 @@ public class Main {
 
         // === Display Policies Sorted by Premium Amount (Custom Comparator) ===
         System.out.println("\n--- All Policies Sorted by Premium Amount ---");
-        List<Policy> allPolicies = getAllCustomers(service).stream()
+        List<Policy> allPolicies = service.getAllCustomers().stream()
                 .flatMap(cust -> cust.getPolicies().values().stream())
                 .sorted(Comparator.comparingDouble(Policy::getPremiumAmount))
                 .collect(Collectors.toList());
@@ -102,21 +102,9 @@ public class Main {
 
     // Helper to print all customers
     private static void printAllCustomers(PolicyServices service) {
-        for (Customer cust : getAllCustomers(service)) {
+        for (Customer cust : service.getAllCustomers()){
             service.printCustomerDetails(cust.getCustomerId());
         }
     }
 
-    // Helper to retrieve all customers using reflection (since customerMap is private)
-    private static Collection<Customer> getAllCustomers(PolicyServices service) {
-        try {
-            java.lang.reflect.Field field = PolicyServices.class.getDeclaredField("customerMap");
-            field.setAccessible(true);
-            Map<String, Customer> map = (Map<String, Customer>) field.get(service);
-            return map.values();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return Collections.emptyList();
-        }
-    }
 }

@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DAY 7/Adapter Pattern/Adapter Pattern.iml" filepath="$PROJECT_DIR$/DAY 7/Adapter Pattern/Adapter Pattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DAY 7/Builder Pattern/Builder Pattern.iml" filepath="$PROJECT_DIR$/DAY 7/Builder Pattern/Builder Pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 6/Collection Framework/Collection Framework.iml" filepath="$PROJECT_DIR$/DAY 6/Collection Framework/Collection Framework.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 5/Comparable and Comparators/Comparable and Comparators.iml" filepath="$PROJECT_DIR$/DAY 5/Comparable and Comparators/Comparable and Comparators.iml" />
       <module fileurl="file://$PROJECT_DIR$/ DAY 2/Constructors/Constructors.iml" filepath="$PROJECT_DIR$/ DAY 2/Constructors/Constructors.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 4/DAY 4.iml" filepath="$PROJECT_DIR$/DAY 4/DAY 4.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 5/Date and Time/Date and Time.iml" filepath="$PROJECT_DIR$/DAY 5/Date and Time/Date and Time.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DAY 7/Decorator Pattern/Decorator Pattern.iml" filepath="$PROJECT_DIR$/DAY 7/Decorator Pattern/Decorator Pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 1/Masai_Learning-main/EmployeeManagementSystem/EmployeeManagementSystem.iml" filepath="$PROJECT_DIR$/DAY 1/Masai_Learning-main/EmployeeManagementSystem/EmployeeManagementSystem.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 4/Enum/Enum.iml" filepath="$PROJECT_DIR$/DAY 4/Enum/Enum.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 4/Functional Interface and Lambdas/Functional Interface and Lambdas.iml" filepath="$PROJECT_DIR$/DAY 4/Functional Interface and Lambdas/Functional Interface and Lambdas.iml" />
@@ -16,8 +19,10 @@
       <module fileurl="file://$PROJECT_DIR$/DAY 4/Interface/Interface.iml" filepath="$PROJECT_DIR$/DAY 4/Interface/Interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 1/Masai_Learning-main/JavaAssignment-01/JavaAssignment-01.iml" filepath="$PROJECT_DIR$/DAY 1/Masai_Learning-main/JavaAssignment-01/JavaAssignment-01.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 1/Masai_Learning-main/MyApp/MyApp.iml" filepath="$PROJECT_DIR$/DAY 1/Masai_Learning-main/MyApp/MyApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DAY 7/Observer Pattern/Observer Pattern.iml" filepath="$PROJECT_DIR$/DAY 7/Observer Pattern/Observer Pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 6/Patterns/Patterns.iml" filepath="$PROJECT_DIR$/DAY 6/Patterns/Patterns.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 3/Polymorphism and Object Casting/Polymorphism and Object Casting.iml" filepath="$PROJECT_DIR$/DAY 3/Polymorphism and Object Casting/Polymorphism and Object Casting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DAY 7/Strategy Pattern/Strategy Pattern.iml" filepath="$PROJECT_DIR$/DAY 7/Strategy Pattern/Strategy Pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 5/Stream API/Stream API.iml" filepath="$PROJECT_DIR$/DAY 5/Stream API/Stream API.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 4/StreamAPI Basics/StreamAPI Basics.iml" filepath="$PROJECT_DIR$/DAY 4/StreamAPI Basics/StreamAPI Basics.iml" />
     </modules>

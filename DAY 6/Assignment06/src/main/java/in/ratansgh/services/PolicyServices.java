@@ -4,6 +4,9 @@ import in.ratansgh.models.Customer;
 import in.ratansgh.models.Policy;
 import in.ratansgh.repository.Repository;
 
+import java.util.Collection;
+import java.util.Collections;
+
 public class PolicyServices {
 
     private Repository<Customer, String> customerRepo;
@@ -12,7 +15,7 @@ public class PolicyServices {
     private static PolicyServices INSTANCE;
 
     public PolicyServices() {
-        this.customerRepo = customerRepo;
+        this.customerRepo = new Repository<>();
     }
 
     // Checking Singleton
@@ -106,6 +109,10 @@ public class PolicyServices {
                     ", Term: " + policy.getTermYears() +
                     ", Maturity: " + policy.calculateMaturityAmount());
         });
+    }
+
+    public Collection<Customer> getAllCustomers() {
+        return customerRepo.getStorage().values();
     }
 
 }
