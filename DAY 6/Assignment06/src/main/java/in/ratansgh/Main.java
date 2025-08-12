@@ -1,8 +1,8 @@
 package in.ratansgh;
 
 import in.ratansgh.factory.PolicyFactory;
-import in.ratansgh.models.*;
-import in.ratansgh.services.PolicyServices;
+import in.ratansgh.model.*;
+import in.ratansgh.service.PolicyServices;
 
 import java.util.*;
 import java.util.stream.Collectors;

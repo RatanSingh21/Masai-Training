@@ -1,7 +1,6 @@
 package in.ratansgh;
 
-import in.ratansgh.exception.*;
-import in.ratansgh.services.implementation.ParkingManager;
+import in.ratansgh.service.implementation.ParkingManager;
 
 public class Main {
     public static void main(String[] args) {

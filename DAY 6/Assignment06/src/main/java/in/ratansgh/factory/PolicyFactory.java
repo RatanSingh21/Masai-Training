@@ -1,6 +1,6 @@
 package in.ratansgh.factory;
 
-import in.ratansgh.models.Policy;
+import in.ratansgh.model.Policy;
 
 import java.util.HashMap;
 import java.util.Map;

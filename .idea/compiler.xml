@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Java_Assisgnment_04" />
-        <module name="Capstone_Project" />
         <module name="Assignment06" />
+        <module name="Capstone_Project" />
+        <module name="Java_Assignment_07" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Assignment07" target="24" />
       <module name="Exception_Handling" target="24" />
     </bytecodeTargetLevel>
   </component>

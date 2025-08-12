@@ -1,7 +1,5 @@
 package in.ratansgh.repository;
 
-import in.ratansgh.models.Customer;
-
 import java.util.*;
 
 public class Repository <T ,ID> {
