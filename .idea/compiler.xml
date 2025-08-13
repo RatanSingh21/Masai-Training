@@ -10,6 +10,7 @@
         <module name="Assignment06" />
         <module name="Capstone_Project" />
         <module name="Java_Assignment_07" />
+        <module name="Java_Assignment_08" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
