@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 // we use abstract to share the implementation among other classes for example account details will be shared in transaction and all
-public abstract class Account {
+public abstract class Account extends Customer {
 
     private String accountNo;
     private String customerID;

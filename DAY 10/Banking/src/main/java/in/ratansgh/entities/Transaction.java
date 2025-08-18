@@ -15,6 +15,8 @@ public class Transaction {
     private LocalDateTime timestamp;
     private TransactionType type;
 
+    private String toAccountNo;
+
     public Transaction(){
 
     }
@@ -25,6 +27,16 @@ public class Transaction {
         this.accountNo = accountNo;
         this.timestamp = timestamp;
         this.type = type;
+    }
+
+//    for Transaction part
+    public Transaction(String transactionID, BigDecimal amount, String accountNo, LocalDateTime timestamp, TransactionType type, String toAccountNo) {
+        this.transactionID = transactionID;
+        this.amount = amount;
+        this.accountNo = accountNo;
+        this.timestamp = timestamp;
+        this.type = type;
+        this.toAccountNo = toAccountNo;
     }
 
     public String getTransactionID() {
@@ -65,6 +77,14 @@ public class Transaction {
 
     public void setType(TransactionType type) {
         this.type = type;
+    }
+
+    public String getToAccountNo() {
+        return toAccountNo;
+    }
+
+    public void setToAccountNo(String toAccountNo) {
+        this.toAccountNo = toAccountNo;
     }
 
     @Override
