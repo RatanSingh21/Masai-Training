@@ -23,7 +23,7 @@ public class Main {
 
     private static final Scanner sc = new Scanner(System.in);
     private static final DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private static final DateTimeFormatter datetimeformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:MM:SS");
+//    private static final DateTimeFormatter datetimeformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:MM:SS");
 
     public static void main(String[] args) {
 

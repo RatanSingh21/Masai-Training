@@ -6,12 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Java_Assisgnment_04" />
+        <module name="JDBC_DAY_12" />
         <module name="Assignment06" />
+        <module name="Banking" />
+        <module name="Java_Assisgnment_04" />
         <module name="Capstone_Project" />
         <module name="Java_Assignment_07" />
         <module name="Java_Assignment_08" />
-        <module name="Banking" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

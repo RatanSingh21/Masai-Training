@@ -1,0 +1,39 @@
+Java and MySQL
+    -- >> Enterprise level Application
+
+Serialization and Deserialization
+    1. Maintaining the data -->> In memory
+    2. Processing the data
+    3. Showing the data
+
+disadvantages of Serialization and Deserialization
+
+Bridge, translator : Between DB and Program --- >> JDBC
+
+JDBC ??
+it is a JAR FILE, it is very expensive resource
+
+Banking
+100s of files: bundled up in a jar file
+.java --> compile --> .class file --> zip together -> Jar File
+
+banking app (user.java , transaction.java ,,,,)
+
+class multithreading{
+
+}
+
+client, server
+backend application -->> banking app (client) --> mysql (server)
+
+JDBC Client:
+
+Step-by-step guide to use JDBC Client
+1. First af all integrate the jar file to your class path
+2. Connection established
+3. SQL Query submit
+4. Execution done by SQL SERVER
+5. Response from the server
+6. Process the data received from server
+7. Deal with exceptions
+8. Closing the connection
