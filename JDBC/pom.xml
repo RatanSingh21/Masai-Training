@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>in.ratansgh</groupId>
-    <artifactId>JDBC_DAY_12</artifactId>
+    <artifactId>JDBC</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

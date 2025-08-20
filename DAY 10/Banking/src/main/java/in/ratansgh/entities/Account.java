@@ -80,15 +80,15 @@ public abstract class Account extends Customer {
         }
 
         Account account = (Account) obj;
-        return Objects.equals(accountNo , account.accountNo);
+        return Objects.equals(accountNo , account.accountNo) && Objects.equals(customerID, account.customerID) && Objects.equals(type, account.type) && Objects.equals(balance, account.balance);
     }
 
-//    @Override
+    @Override
     public int hashcode(){
         return Objects.hash(accountNo);
     }
 
-//    synchronized bcoz to achieve atomicity
+//    synchronized because we want to achieve atomicity
     public synchronized void deposit(BigDecimal amount){
 
         if ( amount.compareTo(BigDecimal.ZERO) <= 0){
@@ -105,6 +105,7 @@ public abstract class Account extends Customer {
         }
         this.balance = this.balance.subtract(amount);
     }
+
 
     // balance = 100 , interest = 4% then get interest in number i.e 4 so we (100 *4) / 100 => 4
     public BigDecimal calculateInterest(){

@@ -2,7 +2,6 @@ package in.ratansgh.entities;
 
 import in.ratansgh.enums.AccountType;
 
-import javax.swing.*;
 import java.math.BigDecimal;
 
 public class SavingAccount extends Account{

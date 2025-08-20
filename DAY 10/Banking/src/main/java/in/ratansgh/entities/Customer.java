@@ -85,7 +85,7 @@ public class Customer {
                 '}';
     }
 
-    // for validation we use equals and hashcode
+    // for validation, we use equals and hashcode
     @Override
     public boolean equals(Object obj){
 

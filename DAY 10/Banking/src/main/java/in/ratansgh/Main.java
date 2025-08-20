@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class Main {
 
-    //        Map parent of HashMap, good practice to declare in this way..
+    //        Map parent of HashMap, good practice to declare in this way
     private static final Map<String, Customer> customers = new HashMap<>();
     private static final Map<String, Account> accounts = new HashMap<>();
 
@@ -74,6 +74,11 @@ public class Main {
             case 5:
                 viewTransactionHistory();
                 break;
+            case 6:
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Invalid option selected... LOL!!!");
         }
     }
 
@@ -88,27 +93,43 @@ public class Main {
     }
 
     public static void registerCustomer(){
-        System.out.println("\n ---------- Customer Registation --------");
+        System.out.println("\n ---------- Customer Registration --------");
 
         System.out.println("Enter Customer ID: ");
         String customerID = sc.nextLine().trim();
-
+        // regex validations
+        if (RegexValidations.matchesCustomRegex(customerID, "^CUST_\\d{1,5}$")){
+            System.out.println("Invalid enter for CUSTOMER_ID.... \nShould in this format CUST_OOX.....");
+            return;
+        }
         if (customers.containsKey(customerID)){
             System.out.println("Customer already exists");
             return;
         }
+
         System.out.println("Enter name: ");
         String name = sc.nextLine().trim();
+        if (!RegexValidations.isValidString(name)){
+            System.out.println("Name should contain (a-z) or (A-Z)");
+            return;
+        }
 
         System.out.println("Enter Email: ");
         String email = sc.nextLine().trim();
+        if (!RegexValidations.isValidEmail(email)){
+            System.out.println("Email should be like abc@demo.com..");
+            return;
+        }
 
         System.out.println("Enter Mobile Number: ");
         String phone = sc.nextLine().trim();
+        if (!RegexValidations.isValidPhone(phone)){
+            System.out.println("Phone number should be of length 10 and only numbers...");
+            return;
+        }
 
         System.out.println("Enter the DOB in yyyy-MM-dd: ");
         String DOB = sc.nextLine().trim();
-
         LocalDate dateOfBirth;
         try{
             dateOfBirth = LocalDate.parse(DOB , dateformatter);
@@ -119,6 +140,10 @@ public class Main {
 
         System.out.println("Enter the password: ");
         String password = sc.nextLine().trim();
+        if (RegexValidations.matchesCustomRegex(password, "^[a-zA-Z0-9]{6,12}$")){
+            System.out.println("Password should contain alphanumerics and minimum 2 and maximum 12 characters");
+            return;
+        }
 
         Customer customer = new Customer(customerID,name,email,phone,password,dateOfBirth);
         customers.put(customerID,customer);
@@ -131,8 +156,7 @@ public class Main {
         System.out.println("\n ---------- Create New Account  --------");
 
         System.out.println("Please enter Customer Id");
-        String customerId=sc.nextLine().trim();
-
+        String customerId=sc.next().trim();
         Customer customer=customers.get(customerId);
         if(customer ==null ){
             System.out.println("Customer not found");
@@ -141,7 +165,7 @@ public class Main {
 
         System.out.println("Choose account type: ");
         System.out.println("1) Savings Account (6% Interest rate and min balance of 10,000");
-        System.out.println("2)Current Account (6 % Interest rate and no min balance) ");
+        System.out.println("2) Current Account (6 % Interest rate and no min balance) ");
         System.out.println("Select Account type");
 
         int typeChoice =getInput();
@@ -149,6 +173,9 @@ public class Main {
 
         System.out.println("Enter initial balance: ");
         String balance =sc.nextLine().trim();
+        if (RegexValidations.isValidString(balance)){
+            System.out.println("Only string numbers are allowed...");
+        }
 
         try {
             BigDecimal initialBalance = new BigDecimal(balance);
@@ -165,7 +192,7 @@ public class Main {
                     return;
             }
             accounts.put(accountNo, account);
-            System.out.println("Congratulation Account created successfully; with the account no: " + accountNo);
+            System.out.println("Congratulation Account created successfully; " + customer.getName()+  " has the account no: " + accountNo);
 
         } catch (NumberFormatException e) {
             System.out.println(
@@ -176,7 +203,7 @@ public class Main {
     }
 
     private static String generateAccountNo() {
-        return String.format("%10d ", System.currentTimeMillis()%100000000L);
+        return "HDFC_ACC" + System.currentTimeMillis();
     }
 
     private static void performTransaction(){
@@ -187,7 +214,6 @@ public class Main {
         System.out.println("3. Transfer ");
 
         System.out.println("PLease select the type of transaction..");
-
         int transactionChoice = getInput();
 
         switch (transactionChoice){
@@ -209,9 +235,11 @@ public class Main {
 
         System.out.println("Enter account Number: ");
         String accountNo = sc.nextLine().trim();
+        if (RegexValidations.matchesCustomRegex(accountNo, "^HDFC_ACC.*")){
+            System.out.println("Account number should start with HDFC_ACC.....");
+        }
 
         Account account = accounts.get(accountNo);
-
         if (account == null) {
             System.out.println("Account Not found! ");
             return;
@@ -219,14 +247,15 @@ public class Main {
 
         System.out.println("Enter the deposit amount...");
         String amountstr = sc.nextLine().trim();
+        if (RegexValidations.isValidString(amountstr)){
+            System.out.println("amount should have only numbers....");
+        }
 
         try{
             BigDecimal amount = new BigDecimal(amountstr);
-
             account.deposit(amount);
 
             String transactionID = generateTransactionID();
-
             Transaction transaction = new Transaction(transactionID,amount,accountNo,LocalDateTime.now(),TransactionType.DEPOSIT);
 
 
@@ -240,7 +269,6 @@ public class Main {
     }
 
     public static String generateTransactionID(){
-
         return "HDFC_TXN " + System.currentTimeMillis();
     }
 
@@ -248,27 +276,30 @@ public class Main {
 
         System.out.println("Enter Account Number: ");
         String accountNo = sc.nextLine().trim();
+        if (RegexValidations.matchesCustomRegex(accountNo, "^HDFC_ACC.*")){
+            System.out.println("Account number should start with HDFC_ACC.....");
+        }
 
         Account account = accounts.get(accountNo);
-
         if (account == null) {
             System.out.println("Account registered nhi hai !!!");
             return;
         }
 
-        System.out.println("Enter the withdrawl Amount: ");
+        System.out.println("Enter the withdrawal Amount: ");
         String amountstr = sc.nextLine().trim();
+        if (RegexValidations.isValidString(amountstr)){
+            System.out.println("amount should have only numbers....");
+        }
 
         try{
            BigDecimal amount = new BigDecimal(amountstr);
-
            account.withdraw(amount);
 
            String transactionId = generateTransactionID();
-
            Transaction transaction = new Transaction(transactionId,amount,accountNo,LocalDateTime.now(),TransactionType.WITHDRAW);
 
-            System.out.println("Withdrawl Successful! Balance " + account.getBalance());
+            System.out.println("Withdrawal Successful! Balance " + account.getBalance());
         } catch (NumberFormatException e ){
             System.out.println("Invalid Amount");
         } catch (InsufficientBalanceException e){
@@ -281,22 +312,24 @@ public class Main {
 
         System.out.println("Enter the source account Number: ");
         String fromAccountNo = sc.nextLine().trim();
+        if (RegexValidations.matchesCustomRegex(fromAccountNo, "^HDFC_ACC.*")){
+            System.out.println("Account number should start with HDFC_ACC.....");
+        }
 
         Account fromAccount = accounts.get(fromAccountNo);
-//        Account fromAccount = (Account) accounts.get(fromAccountNo);
-
         if (fromAccount == null){
-            System.out.println(" Soucr acc not found !!");
+            System.out.println(" Source acc not found !!");
             return;
         }
 
 
         System.out.println("Enter the Destination account Number: ");
         String toAccountNo = sc.nextLine().trim();
+        if (RegexValidations.matchesCustomRegex(toAccountNo, "^HDFC_ACC.*")){
+            System.out.println("Account number should start with HDFC_ACC.....");
+        }
 
         Account toAccount = accounts.get(fromAccountNo);
-//        Account toAccount = (Account) accounts.get(fromAccountNo);
-
         if (toAccount == null){
             System.out.println(" Destination acc not found !!");
             return;
@@ -309,7 +342,9 @@ public class Main {
 
         System.out.println(" Enter the amount: ");
         String amountstr = sc.nextLine().trim();
-
+        if (!RegexValidations.isValidString(amountstr)){
+            System.out.println("amount should have only numbers....");
+        }
 
         try {
 
@@ -320,7 +355,7 @@ public class Main {
 
             String transactionId = generateTransactionID();
             Transaction transaction = new Transaction(transactionId,amount,fromAccountNo,LocalDateTime.now(),TransactionType.TRANSFER,toAccountNo); // to amount wala constrcutor
-
+            System.out.println("Transaction completed successfully....");
 
         }catch (NumberFormatException e){
             System.out.println("Invalid number");
@@ -336,6 +371,9 @@ public class Main {
 
         System.out.println("Enter the account number...");
         String accountNo = sc.nextLine().trim();
+        if (RegexValidations.matchesCustomRegex(accountNo, "^HDFC_ACC.*")){
+            System.out.println("Account number should start with HDFC_ACC.....");
+        }
 
         Account account = accounts.get(accountNo);
         if (account==null){
@@ -344,19 +382,22 @@ public class Main {
         }
 
         System.out.println(account.toString());
-        if (account instanceof SavingAccount){
-            System.out.println("Account type: Saving Account...");
-        }else {
-            System.out.println("Account type: Current Account...");
-        }
+//        if (account instanceof SavingAccount){
+//            System.out.println("Account type: Saving Account...");
+//        }else {
+//            System.out.println("Account type: Current Account...");
+//        }
     }
 
     private static void viewTransactionHistory(){
 
         System.out.println("\n ---------- Transaction History --------");
 
-        System.out.println("Kaunsa acccount ka transaction dekhna hai...");
+        System.out.println("Which account's transaction you want to see ? Enter the account number...");
         String accountNo = sc.nextLine().trim();
+        if (RegexValidations.matchesCustomRegex(accountNo, "^HDFC_ACC.*")){
+            System.out.println("Account number should start with HDFC_ACC.....");
+        }
 
         Account account = accounts.get(accountNo);
         if (account == null){
@@ -364,6 +405,7 @@ public class Main {
             return;
         }
 
+        // filter using Lambda function.
         List<Transaction> accountTransaction = transactions.stream()
                 .filter(t -> t.getAccountNo().equals(accountNo))
                 .sorted(Comparator.comparing(Transaction::getTimestamp).reversed())
