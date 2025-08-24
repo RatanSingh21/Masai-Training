@@ -1,0 +1,5 @@
+java: 4
+is: 2
+powerful: 1
+yes: 1
+great: 1
