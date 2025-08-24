@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Assignment_maven" />
         <module name="Assignment06" />
-        <module name="Banking" />
         <module name="Java_Assisgnment_04" />
         <module name="DEMO" />
         <module name="Capstone_Project" />
@@ -17,6 +17,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Assignment07" target="24" />
+      <module name="Banking_Capstone" target="24" />
       <module name="DEMO" target="24" />
       <module name="Exception_Handling" target="24" />
       <module name="JDBC" target="24" />

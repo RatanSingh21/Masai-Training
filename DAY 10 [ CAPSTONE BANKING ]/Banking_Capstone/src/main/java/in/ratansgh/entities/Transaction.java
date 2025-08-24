@@ -1,0 +1,119 @@
+package in.ratansgh.entities;
+
+import in.ratansgh.enums.TransactionType;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+public class Transaction {
+
+    private String transactionID;
+    private BigDecimal amount;
+    private String accountNo;
+    private LocalDateTime timestamp;
+    private TransactionType type;
+
+    private String toAccountNo;
+
+    public Transaction(){
+
+    }
+
+    public Transaction(String transactionID, BigDecimal amount, String accountNo, LocalDateTime timestamp, TransactionType type) {
+        this.transactionID = transactionID;
+        this.amount = amount;
+        this.accountNo = accountNo;
+        this.timestamp = timestamp;
+        this.type = type;
+    }
+
+//    for Transaction part
+    public Transaction(String transactionID, BigDecimal amount, String accountNo, LocalDateTime timestamp, TransactionType type, String toAccountNo) {
+        this.transactionID = transactionID;
+        this.amount = amount;
+        this.accountNo = accountNo;
+        this.timestamp = timestamp;
+        this.type = type;
+        this.toAccountNo = toAccountNo;
+    }
+
+    public String getTransactionID() {
+        return transactionID;
+    }
+
+    public void setTransactionID(String transactionID) {
+        this.transactionID = transactionID;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public String getAccountNo() {
+        return accountNo;
+    }
+
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public TransactionType getType() {
+        return type;
+    }
+
+    public void setType(TransactionType type) {
+        this.type = type;
+    }
+
+    public String getToAccountNo() {
+        return toAccountNo;
+    }
+
+    public void setToAccountNo(String toAccountNo) {
+        this.toAccountNo = toAccountNo;
+    }
+    @Override
+    public String toString() {
+        if (type == TransactionType.TRANSFER) {
+            return String.format("[%s] %s: %.2f transferred from %s to %s at %s",
+                    transactionID, type.getDisplayName(), amount, accountNo, toAccountNo, timestamp);
+        } else {
+            return String.format("[%s] %s: %.2f on account %s at %s",
+                    transactionID, type.getDisplayName(), amount, accountNo, timestamp);
+        }
+    }
+
+
+//    @Override
+    public int hashcode(){
+        return Objects.hash(transactionID);
+    }
+
+    @Override
+    public boolean equals(Object obj){
+
+        if (obj == null) {
+            return false;
+        }
+        if(this == obj){
+            return true;
+        }
+
+        Transaction transaction = (Transaction) obj;
+
+        return Objects.equals(transactionID , transaction.transactionID);
+    }
+}
