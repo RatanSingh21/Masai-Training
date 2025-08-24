@@ -16,6 +16,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Assignment07" target="24" />
+      <module name="Assignment1" target="24" />
       <module name="Assignment_Maven" target="24" />
       <module name="Assignment_maven" target="24" />
       <module name="Banking_Capstone" target="24" />
