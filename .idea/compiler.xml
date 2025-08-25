@@ -7,8 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Assignment06" />
+        <module name="Error_Handling" />
         <module name="Java_Assisgnment_04" />
+        <module name="Banking_Capstone" />
         <module name="DEMO" />
+        <module name="MavenHandsOn" />
         <module name="Capstone_Project" />
         <module name="Java_Assignment_07" />
         <module name="Java_Assignment_08" />
@@ -19,10 +22,11 @@
       <module name="Assignment1" target="24" />
       <module name="Assignment_Maven" target="24" />
       <module name="Assignment_maven" target="24" />
-      <module name="Banking_Capstone" target="24" />
       <module name="DEMO" target="24" />
       <module name="Exception_Handling" target="24" />
       <module name="JDBC" target="24" />
+      <module name="untitled" target="24" />
+      <module name="wordAnalyzer" target="24" />
       <module name="WordAnalyzer" target="24" />
     </bytecodeTargetLevel>
   </component>

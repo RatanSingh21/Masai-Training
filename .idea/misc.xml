@@ -18,11 +18,20 @@
         <option value="$PROJECT_DIR$/Assignment_Maven/pom.xml" />
         <option value="$PROJECT_DIR$/WordAnalyzer/pom.xml" />
         <option value="$PROJECT_DIR$/Assignment1/pom.xml" />
+        <option value="$PROJECT_DIR$/DAY 15/MavenHandsOn/pom.xml" />
+        <option value="$PROJECT_DIR$/DAY 10 [ CAPSTONE BANKING ]/Banking_Capstone/pom.xml" />
+        <option value="$PROJECT_DIR$/DAY 15 [ Dependency Injection ]/MavenHandsOn/pom.xml" />
+        <option value="$PROJECT_DIR$/DAY 14 [ Maven Intro]/wordAnalyzer/pom.xml" />
+        <option value="$PROJECT_DIR$/day16/untitled/pom.xml" />
+        <option value="$PROJECT_DIR$/DAY 5/Exception_Handling/pom.xml" />
+        <option value="$PROJECT_DIR$/DAY 15 [ Spring Core, DI,  IOC]/MavenHandsOn/pom.xml" />
+        <option value="$PROJECT_DIR$/DAY 16 [ Springboot ]/demo/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/Assignment1/pom.xml" />
+        <option value="$PROJECT_DIR$/DAY 14 [ Maven Intro]/wordAnalyzer/pom.xml" />
       </set>
     </option>
   </component>

@@ -33,15 +33,15 @@ public class Main {
     private static final ExecutorService executor = Executors.newFixedThreadPool(5);
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
 
         System.out.println("Welcome to HDFC BANKING APPLICATION....");
 
+
         // calling the menu
         try {
-            while(true){
-                showmainMenu();
-            }
+            do showmainMenu();
+            while (true);
         } catch (Exception e){
             System.out.println("Error: " + e.getMessage());
         } finally {
@@ -617,5 +617,4 @@ public class Main {
             System.out.println("Multithreaded transfer failed: " + e.getMessage());
         }
     }
-
 }

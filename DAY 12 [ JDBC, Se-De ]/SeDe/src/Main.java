@@ -1,25 +1,25 @@
 import java.io.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
 
         Student s1 = new Student(1, "Ratan");
 
-        // Serialization
-        FileOutputStream fos = new FileOutputStream("student.ser");
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-        oos.writeObject(s1);
-        System.out.println("Object Serialised.... with new file in directory generated...");
+//        // Serialization
+//        FileOutputStream fos = new FileOutputStream("student.ser");
+//        ObjectOutputStream oos = new ObjectOutputStream(fos);
+//
+//        oos.writeObject(s1);
+//        System.out.println("Object Serialised.... with new file in directory generated...");
 
         // Deserialization
-//        FileInputStream fis = new FileInputStream("student.ser");
-//        ObjectInputStream ois  = new ObjectInputStream(fis);
-//        Student s2 = (Student) ois.readObject();
-//
-//        System.out.println("Object deserialized....");
-//        System.out.println(s2);
+        FileInputStream fis = new FileInputStream("student.ser");
+        ObjectInputStream ois  = new ObjectInputStream(fis);
+        Student s2 = (Student) ois.readObject();
+
+        System.out.println("Object deserialized....");
+        System.out.println(s2);
 
     }
 

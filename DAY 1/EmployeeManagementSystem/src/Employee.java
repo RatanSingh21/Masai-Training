@@ -6,6 +6,13 @@ public class Employee {
     private String employeeDOB;
     private String employeeAddress;
 
+    public Employee(int i, String alice, String it, int i1) {
+    }
+
+    public Employee() {
+
+    }
+
     //Getters and Setters
 
     public String getEmployeeName() {
@@ -78,5 +85,9 @@ public class Employee {
 //            System.out.println(employeeName);
 //            i++;
 //        }while(i <= number);
+    }
+
+    public double getSalary() {
+        return 0;
     }
 }

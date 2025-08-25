@@ -3,7 +3,7 @@
 public class Main {
     public static void main(String[] args) {
 
-        // Created an Constructor for the class
+        // Created a Constructor for the class
         EmployeeOnboardingSystem emp_01 = new EmployeeOnboardingSystem();
 
         // Declaring the variables
