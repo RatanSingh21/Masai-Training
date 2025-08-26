@@ -1,0 +1,50 @@
+Spring Modules:
+    - Spring Core Module (IOC Container) : Base module for the rest
+    - AOP Module (Aspect Oriented Programming) : Middleware service (not going learn)
+    - MVC Module : Used for presentation layers (Spring MVC)
+    - Test Module : Test modules
+
+Spring Core Module:
+    - Dependency [should be tried to make loosely coupled instead of tight coupling]
+    - IOC [Inversion of Control ] - Design principle , IOC is managing all the dependency(instance of objects) and help to achieve loose coupling
+    - DI
+    - Java Bean [Should follow all 4 requirements -- public class, private attributes , no-args constructor and getter and setters]
+    - Spring Bean [ A Spring Bean is an object managed by the Spring Container. Unlike Java Beans, Spring Beans do not necessarily have to follow all Java Bean conventions ]
+
+1. IOC
+    - IOC is a design principle where the control of object creation and dependency management is transferred from the program to an external container.
+    - In Spring, IOC is implemented through the Spring Container, which manages the creation and assembly of beans.
+    - Benefits:
+        - Achieves loose coupling
+        - Improves testability
+        - Simplifies code maintenance
+
+2. Bean Factory
+    - BeanFactory( Interface which contains other useful interfaces) --- (Parent interface) ---- kindof deprecated.
+    - One of the important interface is ApplicationContext Interface (child interface )of BeanFactory
+
+3. Dependency Injection
+    - The process by which an external entity (Spring Container) injects required dependencies into a class rather than the class creating them by itself.
+    - Dependencies (what can be it)
+        - Attribute type (int , float , primitive data type)
+        - Object type
+        - Collection type (list , map)
+    - Type of dependencies
+        - Setter Injection
+        - Constructor
+
+
+----------------------- Spring Boot ---------------------------
+
+Annotations can be implemented at following levels:
+    - Class
+    - Method
+    - Constructor
+    - Attribute
+
+Type of Annotations:
+1. Stereotype Annotation
+    - @Service, @Repository, @Component, @Controller,
+2. Autowiring Annotation
+    - @Autowired
+3.

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+
+
+<!--    id is identifier for the bean and in class we need to give the path of the registered class....-->
+    <bean id = "MyBusiness" class= "in.ratansgh.MyBusiness" />
+
+
+<!--    Registered the classes-->
+    <bean id = "car" class = "in.ratansgh.Car"/>
+    <bean id = "bike" class = "in.ratansgh.Bike"/>
+
+
+    <!--    Setter dependency Injection-->
+<!--    Registered the dependency -->
+<!--    <bean id = "Travel_Car" class = "in.ratansgh.Travel">-->
+<!--&lt;!&ndash;        v here is attribute name in travel needs to be same&ndash;&gt;-->
+<!--        <property name="v" ref="car"/>-->
+<!--        <property name="numberOfPerson" value="4"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="Travel_Bike" class ="in.ratansgh.Travel">-->
+<!--        <property name="v" ref="bike"/>-->
+<!--        <property name="numberOfPerson" value="4"/>-->
+<!--    </bean>-->
+
+    <!--    Constructor Injection-->
+    <bean id = "Travel_Contructor_Bike" class = "in.ratansgh.Travel">
+        <constructor-arg ref="car"/>
+        <constructor-arg value="10"/>
+    </bean>
+
+
+</beans>

@@ -15,9 +15,6 @@
       <sourceFolder url="file://$MODULE_DIR$/DAY 12 [ JDBC, Se-De ]/SeDe/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DAY 13 [ Problems ]/Problems/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DAY 14 [ Maven Intro]/wordAnalyzer/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/DAY 15 [ Spring Core, DI,  IOC]/MavenHandsOn/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/DAY 15 [ Spring Core, DI,  IOC]/MavenHandsOn/src/main/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/DAY 15 [ Spring Core, DI,  IOC]/MavenHandsOn/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/DAY 2/Arrays/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DAY 2/Constructors/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DAY 2/Inheritence/src" isTestSource="false" />
@@ -60,6 +57,9 @@
       <sourceFolder url="file://$MODULE_DIR$/DAY 8/Java_Assignment_08/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/DAY 8/MultiThreading/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DAY 8/Reentrantlock and Deadlock/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DAY 15 [ Spring Framework ]/MavenHandsOn/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DAY 15 [ Spring Framework ]/MavenHandsOn/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/DAY 15 [ Spring Framework ]/MavenHandsOn/src/test/java" isTestSource="true" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

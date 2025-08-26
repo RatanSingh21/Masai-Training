@@ -1,0 +1,213 @@
+Java and MySQL
+    -- >> Enterprise level Application
+
+------------------------------------ Serialization and Deserialization  --------------------------------
+
+        1. Maintaining the data -->> In memory
+        2. Processing the data
+        3. Showing the data
+
+disadvantages of Serialization and Deserialization
+
+Bridge, translator : Between DB and Program --- >> JDBC
+
+JDBC ??
+it is a JAR FILE, it is very expensive resource
+
+Banking
+100s of files: bundled up in a jar file
+.java --> compile --> .class file --> zip together -> Jar File
+
+banking app (user.java , transaction.java ,,,,)
+
+class multithreading{
+
+}
+
+client, server
+backend application -->> banking app (client) --> mysql (server)
+
+------------------------------------ JDBC  --------------------------------
+
+JDBC Client:
+
+Step-by-step guide to use JDBC Client
+1. First af all integrate the jar file to your class path
+2. Connection established
+3. SQL Query submit
+4. Execution done by SQL SERVER
+5. Response from the server
+6. Process the data received from server
+7. Deal with exceptions
+8. Closing the connection
+
+RESULT CONCEPT I.E BF LIST , AF LIST and in between is one record
+
+PREPARED STATEMENT
+CURSOR
+2 possible scenarios for resultset
+    1. when we get exactly 0 or 1 row: primary key ( query on primary key )
+    2. when we can get more 1 : we use while loop
+
+Initial method for database interaction is JDBC, which requires manual query construction and connection management.
+
+JDBC operations involve:
+    - Loading driver class.
+    - Creating DB connections using URLs, username, password.
+    - Handling SQL queries as strings.
+
+JDBC has several limitations such as frequent connection handling and inability to directly map Java objects to DB tables.
+
+--------------------------- DEVELOPMENT --------------------------------
+
+Responsibility of the Developers
+    - Write source code(bunch of classes, interfaces, exceptions....)
+    - Adding external dependencies to the code
+    - compiling the code
+    - testcases (Junit, mockito, sonar)
+    - compilation with the test case
+    - Arrange code in structured manner
+    - Packaging: Build
+    - Deploy
+
+------------------------------------ BUILD TOOLS  --------------------------------
+
+ANT Apache : (Problems with this )
+    - Dependency management
+    - Lifecycle maintenance issue
+    - XML File reliability
+
+------------------- MAVEN  -----------------------
+
+Maven Terms
+    - Artifact : outcome of a maven tool, jar file , war file
+    - Archetype : Maven template (using existing template / project)
+    - Group id: (com.hdfclife) unique identifier for the Artifact of a particular org(com.hdfclife)
+    - Artifact id: Unique id of an artifact
+    - pom.xml : Most important file of our project ( dependencies management )
+
+Maven handles downloading dependencies (e.g., MySQL JDBC driver) automatically during the build.
+
+Maven Repository :
+    1. Central Repo - maintained by maven developers, public online ( security issues )
+    2. Remote Repo - Org level approved repos
+    3. Local Repo - cached dependencies stored in local machines
+
+Maven Lifecycle :
+    1. Validate: validate the project structure like pom file spelling , tags and all
+    2. Compile: Compile the source code, download the dependencies
+    3. test compile: compilation of the test case.
+    4. Test: run the test cases
+    5. Package : bundle the code into a jar file inside target folder
+    6. Deploy ( optional )
+    7. Clean :delete and remove the previous build data
+
+------------------------------------ LAYERED ARCHITECTURE   --------------------------------
+
+Layer Architecture:
+    1. Maintaining the business data
+    2. Processing the data
+    3. Presenting it to the client in a user understandable format
+
+Layered Application {
+    - Data Access Logic : Communicating with the DB
+    - Business Logic : Performing Logical Operation/ business rules
+    - Presentation Logic : Displaying the info to the client
+}
+
+Advantages: ensures loose coupling, easier testing, better code org and improved organization.
+
+What if we don't follow this architecture ?
+    - Modification will be tough ,because code won't be organized
+    - Testing will also be tough
+    - Collaboration will also be tough
+
+    1. Presentation Layer
+    2. Service Layer (Business layer)
+    3. Data Access Layer
+
+------------------------------------ DATA ACCESS LAYER & ORM --------------------------------
+
+ORM (Object-Relational Mapping):
+    - Helps map Java objects to relational database tables, improving data persistence.
+    - Examples: Hibernate, iBATIS, TopLink.
+
+------------------------------------ JPA  --------------------------------
+
+Java Persistence ( not  ORM but uses for implementation ):
+ A specification providing a standard interface for ORM implementations.
+ [ A Specification is a formal blueprint or contract that defines how something should be implemented without dictating the internal implementation ]
+
+    - DB stores Primitives values (hence we use serialization and de but not used )
+    - The process of saving the state of object: PERSISTENCE
+    - Serialization
+    - JDBC takes sql queries in the form of string  ( below disadvantages )
+        - Managing connection
+        - Exception managements
+    - Standard API implementation for all the ORMS's
+    - JPA won't change specification if ORM changes
+
+ JPQL (Java Persistence Query Languages ): Allows querying the database using object-oriented syntax rather than raw SQL.
+
+------------------------------------ BUSINESS LAYER --------------------------------
+
+    - J2SE : CORE JAVA
+    - J2EE : SPRING BOOT FOR Enterprise Application
+    - J2ME : For IoT and all
+
+Business Layer is created by:
+    J2EE: Specification (implementation of application server software )
+    JDBC : JDBC Driver Software
+    JPA : Implementation of ORM software
+
+Enterprise Challenges:
+    1. Data Security: Secured
+    2. Protocols
+    3. Transaction ( either everything or nothing )
+    4. Logging
+    5. Messaging
+    6. Mailing
+    etc...
+
+Frameworks(F/W) popular ones
+    .net
+    J2EE
+
+------------------------------------ WORKING OF F/W --------------------------------
+
+Application Server (Comms with clients via various protocols): It has two components (Web server + EJB Container) held by Communication protocols
+     1. WebServer:
+            - subset of Application Server example tomcat, contains servlets and JSP Containers.
+            - Handles HTTP requests, serves static and dynamic web content.
+            - WebServer VS App Serv
+                - Web server is a subset of App server
+                - web server has JSP/ Servlets
+     2. EJB Container (Enterprise JaveBeans Container):
+            - Comms with database, heavy weight , more robust
+            - CONTAINERS -- Provides virtual Environment
+
+------------------------------------ SPRING FRAMEWORK --------------------------------
+
+- Spring Framework introduced a lightweight alternative to EJB container for business logic management. (no web servers)
+- Spring Boot embeds the web server, simplifying deployment and removing the need to separately configure servers like Tomcat.
+- Springboot -- It extends Spring by adding:
+    - embedded servers
+    - Auto configurations
+    - Dependency Management
+    - Reduces boilerplate code.
+
+POM: Project object model
+POJO Classes: Plain old java objects and classes will be managed by Spring F/W's container/env (IoC)
+POJI: Plain old Java Interface
+
+Spring Container:
+    - It creates, manages, and configures objects called Spring Beans.
+    - The container uses configuration metadata (such as XML configuration) to know how to instantiate, configure, and assemble the beans.
+
+------------------------------------ BEAN CLASS --------------------------------
+
+- Java Beans are classes with the following rules:
+      - Public class with no-arg constructor.
+      - Private attributes accessed via getters/setters
+- Used heavily for representing entities and managed by frameworks like Spring
+- Components = beans
