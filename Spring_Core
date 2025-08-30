@@ -30,5 +30,48 @@ Spring Core Module:
         - Object type
         - Collection type (list , map)
     - Type of dependencies
-        - Setter Injection
-        - Constructor
+        - Setter Injection --- can resolve circular dependency
+        - Constructor -- cannot resolve circular dependency
+
+    Circular Dependency:
+        - When two or more beans depend on each other directly or indirectly.
+        - Using setter injection breaks circular reference issues.
+        - To solve this we should at least have one setter injection in both the dependency
+
+4. Wiring and Auto Wiring
+    - Wiring: Creating association between two components..
+       - Can be done Explicitly or auto-wiring
+    - Auto Wiring: automatically wire dependencies without explicitly defining them in XML.
+        - Modes:
+            1. no -- No autowiring, explicit wiring only.
+            2. byName -- Injects bean whose id matches the property name.
+            3. byType -- Injects bean of the matching type.
+            4. constructor -- Uses constructor injection automatically (works with priority of byType ). -- use primary and prototype scope or else it will by default give singleton i.e same instance is passed(hashed code )
+    - Limitations:
+        - Autowiring does not work for simple primitives.
+        - Multiple beans of the same type cause ambiguity errors.
+    - Autowiring usually performs setter injection under the hood.
+
+5. Scope
+    - Bean scope defines the lifecycle and visibility of a bean in the container.
+    Common scopes:
+        - singleton (default): One instance per Spring container.
+        - prototype: New instance is created every time the bean is requested.
+    - Singleton beans are cached and shared, prototype beans are new for each request
+
+Bean Lifecycle:
+    1. Does not exist: Bean is not created.
+    2. Instantiation: Bean object is created.
+    3. Initialization: Bean properties are set and init-method is called.
+    4. In service/usage: Bean is ready for use.
+    5. Destruction: Container removes the bean and calls destroy-method.
+
+Spring Boot Transition
+    - Spring Boot simplifies Spring application setup by providing starter dependencies, default configurations, and embedded servers.
+    - Spring Initializer is a web-based tool to generate Spring Boot projects with desired dependencies.
+    - Advantage of Spring Boot:
+        1. Reduces boilerplate configuration.
+        2. Easier dependency management.
+        3. Supports annotations to reduce XML configurations.
+        4. For enterprise projects, Spring Boot is preferred due to ease of development and maintainability.
+

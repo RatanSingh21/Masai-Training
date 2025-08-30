@@ -1,7 +1,10 @@
 package in.ratansgh;
 
+import in.ratansgh.ExampleOfSetterInjection.PresentationLayer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.lang.reflect.Constructor;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,7 +15,6 @@ public class Main {
     Here we never created the object of MyBusiness class like using constructor and new keyword ,it has been managed
     by the Spring Container....
 */
-
 //        // calling the registered bean
 //        // getBean("bean_id_name" , "class_name")
 //        MyBusiness mb = ctx.getBean("MyBusiness", MyBusiness.class);
@@ -41,9 +43,28 @@ public class Main {
 //        Travel trB = ctx.getBean("Travel_Bike", Travel.class);
 //        trB.journey();
 
-        Travel trCons = ctx.getBean("Travel_Contructor_Bike", Travel.class);
-        trCons.journey();
+//        Travel trCons = ctx.getBean("Travel_Contructor_Bike", Travel.class);
+//        trCons.journey();
 
+
+/*
+    Circular dependency using constructor injection -- >> will throw error since circular dependency
+    to overcome this we use setter injection but in setter this will work.
+*/
+//        A a_obj = ctx.getBean("A_Class", A.class);
+//        a_obj.showA();
+//        System.out.println("\n");
+//
+//        B b_obj = ctx.getBean("B_Class", B.class);
+//        b_obj.showB();
+
+//  Real world problem and autowiring mode
+//        PresentationLayer PL = ctx.getBean("Present" , PresentationLayer.class);
+//        PL.present();
+
+//        Constructor autowiring
+    ConstructorAutowiring CAW = ctx.getBean("CAW" , ConstructorAutowiring.class);
+    CAW.showDetails();
 
     }
 }

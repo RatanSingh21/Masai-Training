@@ -7,18 +7,20 @@
     <!-- bean definitions here -->
 
 
-<!--    id is identifier for the bean and in class we need to give the path of the registered class....-->
-    <bean id = "MyBusiness" class= "in.ratansgh.MyBusiness" />
+<!--&lt;!&ndash;    id is identifier for the bean and in class we need to give the path of the registered class....&ndash;&gt;-->
+<!--    <bean id = "MyBusiness" class= "in.ratansgh.MyBusiness" />-->
 
 
-<!--    Registered the classes-->
-    <bean id = "car" class = "in.ratansgh.Car"/>
-    <bean id = "bike" class = "in.ratansgh.Bike"/>
+<!--&lt;!&ndash;    Registered the classes&ndash;&gt;-->
+<!--    <bean id = "car" class = "in.ratansgh.Car"/>-->
+<!--    <bean id = "bike" class = "in.ratansgh.Bike"/>-->
 
 
-    <!--    Setter dependency Injection-->
-<!--    Registered the dependency -->
+<!--    &lt;!&ndash;    Setter dependency Injection&ndash;&gt;-->
+
+<!--&lt;!&ndash;    Registered the dependency &ndash;&gt;-->
 <!--    <bean id = "Travel_Car" class = "in.ratansgh.Travel">-->
+
 <!--&lt;!&ndash;        v here is attribute name in travel needs to be same&ndash;&gt;-->
 <!--        <property name="v" ref="car"/>-->
 <!--        <property name="numberOfPerson" value="4"/>-->
@@ -29,11 +31,73 @@
 <!--        <property name="numberOfPerson" value="4"/>-->
 <!--    </bean>-->
 
-    <!--    Constructor Injection-->
-    <bean id = "Travel_Contructor_Bike" class = "in.ratansgh.Travel">
-        <constructor-arg ref="car"/>
-        <constructor-arg value="10"/>
-    </bean>
+<!--    &lt;!&ndash;    Constructor Injection&ndash;&gt;-->
 
+<!--    <bean id = "Travel_Contructor_Bike" class = "in.ratansgh.Travel">-->
+
+<!--&lt;!&ndash;        Sequence is important as values and references&ndash;&gt;-->
+<!--        <constructor-arg ref="car"/>-->
+<!--        <constructor-arg value="10"/>-->
+<!--    </bean>-->
+
+<!--    Circular dependency using constructor injection >> will cause error since circular dependency   -->
+
+<!--    &lt;!&ndash;    Registered the classes&ndash;&gt;-->
+<!--    <bean id = "A_Class" class = "in.ratansgh.A">-->
+<!--&lt;!&ndash;        depended on class B, so-called bean id of B&ndash;&gt;-->
+<!--        <constructor-arg ref = "B_Class"/>-->
+<!--    </bean>-->
+
+<!--    <bean id = "B_Class" class = "in.ratansgh.B">-->
+<!--&lt;!&ndash;        same for class A &ndash;&gt;-->
+<!--        <constructor-arg ref="A_Class"/>-->
+<!--    </bean>-->
+
+<!--    Circular dependency using constructor injection >> will cause error since circular dependency   -->
+
+<!--    &lt;!&ndash;    Registered the classes&ndash;&gt;-->
+<!--    <bean id = "A_Class" class = "in.ratansgh.A">-->
+<!--        &lt;!&ndash;        depended on class B, so-called bean id of B&ndash;&gt;-->
+<!--        <property name="b1" ref="B_Class"/>-->
+<!--    </bean>-->
+
+<!--    <bean id = "B_Class" class = "in.ratansgh.B">-->
+<!--    &lt;!&ndash;        same for class A &ndash;&gt;-->
+<!--&lt;!&ndash;        <constructor-arg ref="A_Class"/>&ndash;&gt;-->
+<!--        <property name="a1" ref="A_Class"/>-->
+<!--    </bean>-->
+
+<!--    Example of Real-world problem of circular dependency ie setter injection used... -->
+
+<!--    <bean id = "DAO" class="in.ratansgh.ExampleOfSetterInjection.DAOBean"/>-->
+<!--    <bean id = "Service" class="in.ratansgh.ExampleOfSetterInjection.ServiceBean">-->
+<!--        <property name="dao" ref = "DAO"/>-->
+<!--    </bean>-->
+<!--    <bean id = "Present" class="in.ratansgh.ExampleOfSetterInjection.PresentationLayer">-->
+<!--        <property name="serviceBean" ref="Service"/>-->
+<!--    </bean>-->
+
+<!--     Auto Wiring -->
+<!--    All the above bean registered are explicit wiring/ no mode-->
+
+<!--    byname mode for Real-world problem  BUT BEAN ID OF PREVIOUS DEPENDENCY I.E In Service, it is depended on DAO hence id name should be of setter argument passed-->
+<!--    <bean id = "dao" class="in.ratansgh.ExampleOfSetterInjection.DAOBean"/>-->
+<!--    <bean id = "serviceBean" class="in.ratansgh.ExampleOfSetterInjection.ServiceBean" autowire="byName"/>-->
+<!--&lt;!&ndash;        <property name="dao" ref = "DAO"/>&ndash;&gt;-->
+<!--    <bean id = "Present" class="in.ratansgh.ExampleOfSetterInjection.PresentationLayer" autowire="byName"/>-->
+<!--&lt;!&ndash;        <property name="serviceBean" ref="Service"/>&ndash;&gt;-->
+
+<!--    byType mode for Real-world problem no restriction of name of bean id but single type of the bean i.e. only one dependency of DAO and Service should be there-->
+<!--    <bean id = "DAO" class="in.ratansgh.ExampleOfSetterInjection.DAOBean"/>-->
+<!--    <bean id = "Service" class="in.ratansgh.ExampleOfSetterInjection.ServiceBean" autowire="byType"/>-->
+<!--    <bean id = "Present" class="in.ratansgh.ExampleOfSetterInjection.PresentationLayer" autowire="byType"/>-->
+
+<!--    Constructor Auto Wiring use primary and scope should be prototyped (by default singleton) or else ambiguity-->
+    <bean id = "a1" class = "in.ratansgh.A" primary="true" scope="prototype"/>
+    <bean id = "a2" class = "in.ratansgh.A" scope="prototype"/>
+    <bean id = "b1" class = "in.ratansgh.B"/>
+    <bean id = "CAW" class ="in.ratansgh.ConstructorAutowiring" autowire="constructor">
+
+    </bean>
 
 </beans>

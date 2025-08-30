@@ -23,6 +23,7 @@ public class Library {
         System.out.println("Library: " + name);
         System.out.println("Member: " + member);
         System.out.println("Books:");
+        System.out.println("\n");
         for (Book book : books) {
             System.out.println(book);
         }

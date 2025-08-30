@@ -8,8 +8,8 @@ public class Main {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContent.xml");
 
-        Library library = (Library) context.getBean("lib");
-        library.displayDetails();
+        Library lib = context.getBean("lib" , Library.class);
+        lib.displayDetails();
 
     }
 }
