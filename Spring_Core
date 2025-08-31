@@ -74,4 +74,4 @@ Spring Boot Transition
         2. Easier dependency management.
         3. Supports annotations to reduce XML configurations.
         4. For enterprise projects, Spring Boot is preferred due to ease of development and maintainability.
-
+Note: DAY 15 has Xml. based configuration....
