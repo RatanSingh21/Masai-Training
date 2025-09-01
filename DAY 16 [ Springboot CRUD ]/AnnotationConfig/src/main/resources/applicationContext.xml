@@ -11,7 +11,8 @@
 <!--NO need to register this, annotation config can handle it, but we can use both simultaneously-->
 <!--    <bean id= "A1" class="in.ratansgh.A"/>-->
 
-    <bean id="s2" class = "in.ratansgh.Student"/>
+<!--    Register the bean manually using annotation approch but this will create an ambiguity also this uses class xml. approach(in main class) but we use config class where bean is registered using annotation approach-->
+<!--    <bean id="s2" class = "in.ratansgh.Student"/>-->
 
     <context:component-scan base-package="in.ratansgh"/>
 
