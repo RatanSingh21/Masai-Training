@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface Student {
 
-    List<Student> getallStudents();
+    List<Student> getAllStudents();
     Student saveStudent(Student student);
 }

@@ -33,7 +33,7 @@ public class StudentController {
     }
 
     @GetMapping("/student")
-    public ResponseEntity<Map<String, Object> > getallStudent(){
+    public ResponseEntity<Map<String, Object> > getAllStudent(){
 
         // fetching all the user
         List<Student> student =  stdservice.getAllStudents();
@@ -49,12 +49,25 @@ public class StudentController {
     public ResponseEntity<String> demoException(@PathVariable("id") Integer id){
         if (id> 10){
             int result = id/0; // always arithmetic exceptions
+
             return new ResponseEntity<String>("Arithmetic error" , HttpStatus.OK); // this call genric exception
             // handler for the same not Invalid one.
         }
         else {
             throw new InvalidException("Id less than 10 not acceptable");
         }
+    }
+
+//    ----------------  Spring Security ------------------------
+
+    @GetMapping("/hello")
+    public ResponseEntity<String> welcome(){
+        return new ResponseEntity<String>("Hello world...", HttpStatus.OK);
+    }
+
+    @GetMapping("/hello/auth")
+    public ResponseEntity<String> welcomeViaAuth(){
+        return new ResponseEntity<String>("Hello world by auth...", HttpStatus.OK);
     }
 
 }

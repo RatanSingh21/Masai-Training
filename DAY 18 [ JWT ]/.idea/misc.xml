@@ -4,7 +4,7 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/secure-auth-api/pom.xml" />
+        <option value="$PROJECT_DIR$/JWT-R4J/pom.xml" />
       </list>
     </option>
   </component>
