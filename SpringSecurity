@@ -1,0 +1,62 @@
+------------------   Spring security  -------------------------
+
+Spring Security is a powerful and highly customizable authentication and access-control framework for Java applications.
+    - It provides features for authentication (verifying who the user is) and authorization (what the user is allowed to do). By adding Spring Security to a Spring Boot application, all endpoints are secured by default, requiring users to authenticate before accessing any resource.
+    - When Spring Security dependency is added to the project, it automatically configures basic security settings such as:
+        - Securing all endpoints
+        - Providing a default login form (seen in browser not while in insomnia it will show 401 ) -- default username is user and password is in console.
+        - Generating a random password printed on the console
+
+JSESSIONID in inspect -->> Application -->> cookie
+    - When a user tries to access a secured endpoint, the application prompts for username and password.
+    - Once authenticated, Spring Security creates a session and a JSESSIONID cookie is set in the browser. (before auth JSESSIONID is present but after Auth different JSESSIONID )
+    - This session identifies the user during subsequent requests, so re-authentication for every request is not necessary until the session expires or the user logs out.
+    - Logging out invalidates the session and the cookie changes accordingly. (after logout again JSESSIONID changes but during all this cycle JSESSIONID is required)
+
+Whitelisting API
+    - Sometimes, you need certain endpoints to be publicly accessible (no authentication required), while others remain secured.
+    - This can be achieved by configuring the security to "white-list" specific endpoints.
+    - For this we create an SecurityConfig file
+
+The security configuration includes:
+    - Specifying which endpoints are permitted to all or secured
+    - Configuring the type of login (typically HTTP Basic or form login)
+
+InMemoryUserDetailsManager:
+    - For development and testing, users can be hardcoded using an InMemoryUserDetailsManager.
+    - This manager stores user credentials in memory and supports authentication against them.
+    - Users are typically created with username, password, and roles.
+    - Password encoding: It's important to encode passwords properly.
+    - For development, NoOpPasswordEncoder can be used which does not apply encoding (not recommended for production).
+
+Storing Current user details in Util file:
+    - "SecurityContextHolder" is a class provided by Spring Security.
+    - It holds the SecurityContext, which contains security-related information about the current execution thread, including the logged-in user.
+
+  From the SecurityContext, we get the "Authentication" object.
+    - This object represents the principal (the currently authenticated user).
+    - It contains information such as the username, roles (authorities), and credentials.
+
+Storing User details and Authenticating from the Database not in InMemoryUserDetailsManager:
+    - Spring Security requires a UserDetailsService that fetches user data (username, password, roles) from the data source (typically a database).
+    - Define a class say "MyUserDetails" implementing "UserDetails" which represents authenticated user information
+    - Define a service say "MyUserDetailsService" implementing UserDetailsService that loads user details from database.
+    - In the service, implement the method loadUserByUsername to fetch user details from the database and return a UserDetails object.
+
+------------------   CSRF vs JWT vs CORS  -------------------------
+
+CSRF (Cross-Site Request Forgery):
+    - A security vulnerability where unauthorized commands are sent from a user trusted by the application.
+    - Protection is needed when using cookies for authentication, as browsers send cookies automatically.
+    - Spring Security provides CSRF protection by default for stateful apps.
+
+CORS (Cross-Origin Resource Sharing):
+    - A browser security feature that restricts web pages from making requests to a different domain than the one that served the web page.
+    - Configured on the server to allow or block requests from specific origins.
+    - Not related to authentication, but controls which domains can access your API.
+
+
+JWT (JSON Web Token):
+    - A token-based authentication mechanism for stateless APIs.
+    - The token is sent in the Authorization header, not in cookies.
+    - JWTs are immune to CSRF attacks if not stored in cookies.
