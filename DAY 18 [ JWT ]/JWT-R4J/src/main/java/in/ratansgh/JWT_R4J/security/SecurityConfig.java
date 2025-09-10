@@ -1,5 +1,7 @@
 package in.ratansgh.JWT_R4J.security;
 
+import in.ratansgh.JWT_R4J.util.JWT.JwtValidatorFilter;
+import in.ratansgh.JWT_R4J.util.JWT.JwtGeneratorFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -7,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
 public class SecurityConfig {
@@ -21,6 +24,8 @@ public class SecurityConfig {
                     .requestMatchers("/welcome", "/register").permitAll()
                     .requestMatchers("/admin").hasRole("ADMIN")
             )
+//                .addFilterAfter(new JwtGeneratorFilter(), BasicAuthenticationFilter.class) // Add JwtGeneratorFilter after BasicAuthenticationFilter to generate JWT after successful authentication
+                .addFilterBefore(new JwtValidatorFilter(), BasicAuthenticationFilter.class) // Add JwtValidatorFilter before BasicAuthenticationFilter to validate JWT before authentication
         .httpBasic(Customizer.withDefaults());
         return http.build();
     }

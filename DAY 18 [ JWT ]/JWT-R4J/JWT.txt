@@ -1,0 +1,51 @@
+-----------------   JWT Implementation: Generation and Validation Flow ------------------------
+
+JWT token is used instead of session-based authentication.
+In session-based authentication, the server maintains a session for each user, storing session data on the server and using a session ID (stored in cookies) to identify the user.
+JWT replaces this by storing all necessary user information in the token itself, eliminating the need for server-side session storage.
+
+JWT Generation
+  The JWT generation process typically occurs during user authentication (e.g., login or registration). Here's how it works:
+    1. User Authentication:
+        - The user provides credentials (e.g., username and password).
+        - The application verifies the credentials against the database.
+    2. Token Creation:
+        - If authentication is successful, a JWT token is generated.
+        - The token includes claims such as username, roles, and an expiration time.
+        - The token is signed using a secret key.
+    3. Token Response:
+        - The generated token is sent back to the client in the response.
+
+JWT Validation
+  The JWT validation process ensures that incoming requests are authenticated and authorized.
+    1. Intercept Request:
+        - A filter (e.g., JwtValidatorFilter) intercepts every request.
+    2. Extract Token:
+        - The filter extracts the JWT token from the Authorization header.
+    3. Validate Token:
+        - The token is validated for integrity, expiration, and claims.
+        - If valid, the user details are extracted, and authentication is set in the SecurityContext.
+    4. Proceed with Request:
+        - If the token is valid, the request proceeds to the controller.
+        - If invalid, an error response is returned.
+
+Integration:
+    - Token generation occurs after successful authentication.
+    - Implemented in the JwtGeneratorFilter and added to the filter chain after the BasicAuthenticationFilter.
+    - This ensures the token is created only after the user is authenticated.
+    - Token validation happens before the authentication process.
+    - Implemented in the JwtValidatorFilter and added to the filter chain before the BasicAuthenticationFilter.
+    - This ensures that incoming requests are validated for a valid token before proceeding further.
+    - Defined in the SecurityConfig class.(both generation and validation filters)
+    - Specifies the order of filters and the endpoints requiring authentication or specific roles.
+    - Open endpoints like /register and /welcome bypass token validation, while protected endpoints like /welcome/auth and /admin require token validation and role-based access.
+
+---------------- JWT Token Generation Scenarios ------------------------
+
+First-time authentication (Register & Login):
+    - Use the utility class (JwtUtil) to manually generate the JWT token in the controller.
+    - This is necessary because the user is not yet authenticated, so the filter cannot generate the token.
+
+Other scenarios (Authenticated requests):
+    - Use the filter (JwtGeneratorFilter) to automatically generate and attach the JWT token to the response header.
+    - The filter works after authentication, ensuring consistent token generation for protected endpoints.

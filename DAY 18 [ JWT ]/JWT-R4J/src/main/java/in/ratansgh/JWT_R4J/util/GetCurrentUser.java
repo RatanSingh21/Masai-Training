@@ -15,7 +15,6 @@ public class GetCurrentUser {
     public Employee getLoggedInUserDetails(){
 
         SecurityContext sc = SecurityContextHolder.getContext();
-
         Authentication auth = sc.getAuthentication();
 
         return employeeRepo.findByUsername(auth.getName());
