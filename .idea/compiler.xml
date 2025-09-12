@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Assignment06" />
         <module name="Error_Handling" />
+        <module name="UT-Assignment" />
         <module name="Java_Assisgnment_04" />
         <module name="SpringCore" />
         <module name="Banking_Capstone" />
@@ -30,5 +31,10 @@
       <module name="wordAnalyzer" target="24" />
       <module name="WordAnalyzer" target="24" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="UT-Assignment" options="-parameters" />
+    </option>
   </component>
 </project>
