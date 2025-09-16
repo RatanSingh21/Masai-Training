@@ -49,3 +49,13 @@ First-time authentication (Register & Login):
 Other scenarios (Authenticated requests):
     - Use the filter (JwtGeneratorFilter) to automatically generate and attach the JWT token to the response header.
     - The filter works after authentication, ensuring consistent token generation for protected endpoints.
+
+Step to implement Spring security package in our project
+    1. Add Spring Security dependency in pom.xml
+    2. Create a SecurityConfig class to configure security settings.
+    3. Create custom filters for JWT generation and validation.
+    4. Implement UserDetails interface to represent user details.
+    5. Implement UserDetailsService to load user-specific data.
+    6. Create a utility class for JWT operations (generation and validation).
+    7. Configure filter chain in SecurityConfig to include custom filters.
+    8. Test the implementation using Postman or any API testing tool.

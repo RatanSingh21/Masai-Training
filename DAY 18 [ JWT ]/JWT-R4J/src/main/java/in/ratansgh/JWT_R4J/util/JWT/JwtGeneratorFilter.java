@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.crypto.SecretKey;
 import java.io.IOException;
@@ -48,7 +49,10 @@ public class JwtGeneratorFilter extends OncePerRequestFilter {
                     .setIssuer("Ratansgh")
                     .setSubject("JWT Token")
                     .claim("username", auth.getName())
-                    .claim("authorities", auth.getAuthorities())
+                    // Add user authorities/roles as a claim in the JWT token by adding ROLE_ prefix to each role
+                    .claim("authorities", auth.getAuthorities().stream()
+                        .map(GrantedAuthority::getAuthority)
+                        .toList())
                     .setIssuedAt(iatDate)
                     .setExpiration(calendar.getTime())
                     .signWith(SignatureAlgorithm.HS256,key)

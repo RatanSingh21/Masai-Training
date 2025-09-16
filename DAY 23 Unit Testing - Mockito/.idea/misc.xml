@@ -4,17 +4,8 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/Springboot/pom.xml" />
-        <option value="$PROJECT_DIR$/demo/pom.xml" />
-        <option value="$PROJECT_DIR$/BMS/pom.xml" />
-        <option value="$PROJECT_DIR$/BMS_Assignment/pom.xml" />
-        <option value="$PROJECT_DIR$/SpringbootCRUD/pom.xml" />
+        <option value="$PROJECT_DIR$/Assignment-UT-02/pom.xml" />
       </list>
-    </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/SpringbootCRUD/pom.xml" />
-      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_24" default="true" project-jdk-name="openjdk-24" project-jdk-type="JavaSDK">

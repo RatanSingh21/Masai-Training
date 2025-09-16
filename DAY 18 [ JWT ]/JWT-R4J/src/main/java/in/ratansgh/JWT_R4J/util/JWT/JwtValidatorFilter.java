@@ -50,13 +50,24 @@ public class JwtValidatorFilter extends OncePerRequestFilter {
                 // Parse authorities string to create GrantedAuthority
 
                 // Splits the authorities string using any of the characters {, [, =, ], or } as delimiters. This produces an array of substrings.
-                String[] at = rawAuthorities.split("[{[=]}]");
+                // String[] at = rawAuthorities.split("[{[=]}]");
 
-                // Create a SimpleGrantedAuthority object using the third element of the array (at[2]), which is expected to be the actual authority/role name.
-                SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(at[2]);
-
+                List<?> rolesRaw = (List<?>) claims.get("authorities");
                 List<GrantedAuthority> authorities = new ArrayList<>();
-                authorities.add(simpleGrantedAuthority);
+                for (Object roleObj : rolesRaw) {
+                    String role;
+                    if (roleObj instanceof String) {
+                        role = (String) roleObj;
+                    } else if (roleObj instanceof java.util.LinkedHashMap) {
+                        role = (String) ((java.util.LinkedHashMap<?, ?>) roleObj).get("authority");
+                    } else {
+                        continue;
+                    }
+                    authorities.add(new SimpleGrantedAuthority(role));
+                }
+
+                System.out.println("Parsed roles from JWT token: " + rolesRaw);
+                System.out.println("Granted Authorities: " + authorities);
 
                 // Create Authentication object and set it in SecurityContext
                 Authentication authentication = new UsernamePasswordAuthenticationToken(username, null, authorities);
@@ -64,6 +75,8 @@ public class JwtValidatorFilter extends OncePerRequestFilter {
             }
 
             catch (Exception e){
+
+                e.printStackTrace(); // Add this for debugging
 
                 // If token is invalid or expired, throw exception
                 throw new UsernameNotFoundException("JWT Token is expired or invalid");

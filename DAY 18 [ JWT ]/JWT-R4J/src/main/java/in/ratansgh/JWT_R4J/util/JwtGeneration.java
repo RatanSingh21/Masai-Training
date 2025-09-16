@@ -4,6 +4,7 @@ import in.ratansgh.JWT_R4J.util.JWT.JwtConstant;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.crypto.SecretKey;
@@ -33,7 +34,10 @@ public class JwtGeneration {
                 .setIssuer("Ratansgh")
                 .setSubject("JWT Token")
                 .claim("username", username)
-                .claim("authorities", authorities)
+                // Add user authorities/roles as a claim in the JWT token by adding ROLE_ prefix to each role
+                .claim("authorities", authorities.stream()
+                        .map(GrantedAuthority::getAuthority)
+                        .toList())
                 .setIssuedAt(iatDate)
                 .setExpiration(calendar.getTime())
                 .signWith(SignatureAlgorithm.HS256,key)

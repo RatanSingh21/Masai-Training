@@ -38,7 +38,7 @@ public class EmployeeController {
             // encrypt password first before saving the employee
             employee.setPassword(passwordEncoder.encode(employee.getPassword()));
 
-            // save in database
+            // save in database needs to be implemented in service package
             Employee savedEmployee = employeeRepo.save(employee);
 
             // now since we don't have user details in security context, jwt token won't be generated i.e auth will
@@ -46,7 +46,6 @@ public class EmployeeController {
             String role = String.valueOf(savedEmployee.getRole());
             List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(role));
             String jwtToken = JwtGeneration.generateToken(savedEmployee.getUsername(), authorities);
-
 
             // Wrapping metadata for response
             resp = new LinkedHashMap<>();

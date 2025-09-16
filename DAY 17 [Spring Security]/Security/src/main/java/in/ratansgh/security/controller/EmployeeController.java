@@ -34,6 +34,7 @@ public class EmployeeController {
             employee.setPassword(passwordEncoder.encode(employee.getPassword()));
             System.out.println(employee.getPassword());
 
+            // should be in service layer ideally
             Employee savedEmployee = employeeRepo.save(employee);
 
             // Wrapping metadata for response

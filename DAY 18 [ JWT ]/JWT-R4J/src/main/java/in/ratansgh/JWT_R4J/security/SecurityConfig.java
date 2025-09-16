@@ -24,7 +24,7 @@ public class SecurityConfig {
                     .requestMatchers("/welcome", "/register").permitAll()
                     .requestMatchers("/admin").hasRole("ADMIN")
             )
-//                .addFilterAfter(new JwtGeneratorFilter(), BasicAuthenticationFilter.class) // Add JwtGeneratorFilter after BasicAuthenticationFilter to generate JWT after successful authentication
+                .addFilterAfter(new JwtGeneratorFilter(), BasicAuthenticationFilter.class) // Add JwtGeneratorFilter after BasicAuthenticationFilter to generate JWT after successful authentication
                 .addFilterBefore(new JwtValidatorFilter(), BasicAuthenticationFilter.class) // Add JwtValidatorFilter before BasicAuthenticationFilter to validate JWT before authentication
         .httpBasic(Customizer.withDefaults());
         return http.build();
