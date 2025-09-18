@@ -1,5 +1,6 @@
-package in.ratansgh.JWT_R4J.util.JWT;
+package in.ratansgh.JWT_R4J.filters;
 
+import in.ratansgh.JWT_R4J.util.JWT.JwtConstant;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -49,10 +50,7 @@ public class JwtGeneratorFilter extends OncePerRequestFilter {
                     .setIssuer("Ratansgh")
                     .setSubject("JWT Token")
                     .claim("username", auth.getName())
-                    // Add user authorities/roles as a claim in the JWT token by adding ROLE_ prefix to each role
-                    .claim("authorities", auth.getAuthorities().stream()
-                        .map(GrantedAuthority::getAuthority)
-                        .toList())
+                    .claim("authorities", auth.getAuthorities()) // directly adding authorities list to the claim
                     .setIssuedAt(iatDate)
                     .setExpiration(calendar.getTime())
                     .signWith(SignatureAlgorithm.HS256,key)

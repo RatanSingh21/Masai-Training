@@ -1,4 +1,4 @@
-package in.ratansgh.JWT_R4J.util.exception;
+package in.ratansgh.JWT_R4J.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +20,5 @@ public class ExceptionManagement {
         err.setDetails(req.getDescription(false));
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
     }
-
 
 }

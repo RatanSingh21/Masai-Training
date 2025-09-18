@@ -1,4 +1,4 @@
-package in.ratansgh.JWT_R4J.util.exception;
+package in.ratansgh.JWT_R4J.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

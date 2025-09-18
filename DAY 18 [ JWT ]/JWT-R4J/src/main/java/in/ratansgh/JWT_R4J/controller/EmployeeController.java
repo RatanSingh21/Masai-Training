@@ -2,7 +2,7 @@ package in.ratansgh.JWT_R4J.controller;
 
 import in.ratansgh.JWT_R4J.entity.Employee;
 import in.ratansgh.JWT_R4J.repository.EmployeeRepo;
-import in.ratansgh.JWT_R4J.util.JwtGeneration;
+import in.ratansgh.JWT_R4J.util.JWT.JwtGeneration;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,12 +44,12 @@ public class EmployeeController {
             // now since we don't have user details in security context, jwt token won't be generated i.e auth will
             // be null in JwtGeneratorFilter.java file
             String role = String.valueOf(savedEmployee.getRole());
-            List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(role));
+            List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_" + role));
             String jwtToken = JwtGeneration.generateToken(savedEmployee.getUsername(), authorities);
 
             // Wrapping metadata for response
             resp = new LinkedHashMap<>();
-            resp.put("status", "success");
+            resp.put("status", "200");
             resp.put("message", "Employee registered successfully");
             resp.put("data", savedEmployee);
             resp.put("jwtToken", jwtToken);
@@ -82,6 +82,12 @@ public class EmployeeController {
     @GetMapping("/welcome/auth")
     public ResponseEntity<String> welcome2 (){
         return new ResponseEntity<String>("Inside welcome page authenticated", HttpStatus.OK);
+    }
+
+    // to Admin only but needs JWT token in header to access this page
+    @GetMapping("/user")
+    public ResponseEntity<String> user (){
+        return new ResponseEntity<String>("Welcome to user page", HttpStatus.ACCEPTED);
     }
 
 }
