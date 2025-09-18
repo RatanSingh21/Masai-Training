@@ -1,8 +1,10 @@
 package in.ratansgh.JWT_R4J.security;
 
+import in.ratansgh.JWT_R4J.filters.JwtGeneratorFilter;
 import in.ratansgh.JWT_R4J.filters.JwtValidatorFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,7 +22,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable() )
                 .authorizeHttpRequests((authz) -> authz
                     .requestMatchers("/welcome/auth").authenticated()
-                    .requestMatchers("/welcome", "/register").permitAll()
+                    .requestMatchers("/welcome", "/register", "/login").permitAll()
                     .requestMatchers("/admin").hasRole("ADMIN")
                         .requestMatchers("/user").hasRole("USER")
             )
@@ -34,4 +36,17 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+
+    @Bean
+    public AuthenticationManager authenticationManager(HttpSecurity http, MyUserDetailService userDetailsService, PasswordEncoder passwordEncoder) throws Exception {
+        return http
+                .getSharedObject(org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder.class)
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder)
+                .and()
+                .build();
+    }
+
+
 }

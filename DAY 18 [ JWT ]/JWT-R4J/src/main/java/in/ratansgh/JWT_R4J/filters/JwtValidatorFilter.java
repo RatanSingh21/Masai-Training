@@ -58,7 +58,7 @@ public class JwtValidatorFilter extends OncePerRequestFilter {
                 List<GrantedAuthority> authorities = new ArrayList<>();
                 authorities.add(simpleGrantedAuthority);
 
-//                System.out.println("Parsed roles from JWT token: " + rolesRaw);
+                //System.out.println("Parsed roles from JWT token: " + rolesRaw);
 //                System.out.println("Granted Authorities: " + authorities);
 
                 // Create Authentication object and set it in SecurityContext
@@ -77,8 +77,10 @@ public class JwtValidatorFilter extends OncePerRequestFilter {
     }
 
     @Override
-    public boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        // This filter should not be applied to the /register endpoint and /login endpoint technically
-        return request.getServletPath().equals("/welcome/auth");
+    public boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getServletPath();
+        // Do not validate for /login and /register
+        return path.equals("/login") || path.equals("/register");
     }
+
 }

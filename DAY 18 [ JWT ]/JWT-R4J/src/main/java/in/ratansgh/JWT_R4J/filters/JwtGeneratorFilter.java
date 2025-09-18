@@ -50,7 +50,12 @@ public class JwtGeneratorFilter extends OncePerRequestFilter {
                     .setIssuer("Ratansgh")
                     .setSubject("JWT Token")
                     .claim("username", auth.getName())
-                    .claim("authorities", auth.getAuthorities()) // directly adding authorities list to the claim
+//                    .claim("authorities", auth.getAuthorities()) // directly adding authorities list to the claim
+
+                    // After:
+                    .claim("authorities", auth.getAuthorities().stream()
+                            .map(GrantedAuthority::getAuthority)
+                            .toList())
                     .setIssuedAt(iatDate)
                     .setExpiration(calendar.getTime())
                     .signWith(SignatureAlgorithm.HS256,key)
@@ -66,4 +71,14 @@ public class JwtGeneratorFilter extends OncePerRequestFilter {
 
     }
 
+    @Override
+    public boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getServletPath();
+        // Only run filter for /login
+        return !path.equals("/login");
+    }
+
+
+    //  never use generation filter in FilterChain after BasicAuthenticationFilter because BasicAuthenticationFilter is responsible for processing basic authentication credentials
+    //  (like username and password)
 }

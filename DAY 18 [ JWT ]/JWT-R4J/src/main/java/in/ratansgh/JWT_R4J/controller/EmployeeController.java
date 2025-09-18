@@ -7,12 +7,17 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.authentication.AuthenticationManager;
+
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -26,6 +31,10 @@ public class EmployeeController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
 
     // OpenToAll but jwt token will be generated for the registered employee
     @PostMapping("/register")
@@ -43,17 +52,16 @@ public class EmployeeController {
 
             // now since we don't have user details in security context, jwt token won't be generated i.e auth will
             // be null in JwtGeneratorFilter.java file
-            String role = String.valueOf(savedEmployee.getRole());
-            List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_" + role));
-            String jwtToken = JwtGeneration.generateToken(savedEmployee.getUsername(), authorities);
+//          String role = String.valueOf(savedEmployee.getRole());
+//          List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_" + role));
+//          String jwtToken = JwtGeneration.generateToken(savedEmployee.getUsername(), authorities);
 
             // Wrapping metadata for response
             resp = new LinkedHashMap<>();
             resp.put("status", "200");
             resp.put("message", "Employee registered successfully");
             resp.put("data", savedEmployee);
-            resp.put("jwtToken", jwtToken);
-
+//            resp.put("jwt-token", jwtToken); // returning jwt token in response body
             return new ResponseEntity<>(resp, HttpStatus.OK);
 
         } catch (Exception e) {
@@ -64,6 +72,37 @@ public class EmployeeController {
         }
 
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Map<String, String> loginRequest, HttpServletResponse response) {
+
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            loginRequest.get("username"),
+                            loginRequest.get("password")
+                    )
+            );
+
+            // Extract authorities as SimpleGrantedAuthority
+            List<SimpleGrantedAuthority> authorities = authentication.getAuthorities().stream()
+                    .map(a -> new SimpleGrantedAuthority(a.getAuthority()))
+                    .toList();
+            String jwtToken = JwtGeneration.generateToken(authentication.getName(), authorities);
+
+            response.setHeader("Authorization", jwtToken);
+
+            Map<String, Object> resp = new LinkedHashMap<>();
+            resp.put("status", "200");
+            resp.put("message", "Login successful");
+            return new ResponseEntity<>(resp, HttpStatus.OK);
+        } catch (AuthenticationException e) {
+            Map<String, Object> resp = new LinkedHashMap<>();
+            resp.put("error", "Invalid username or password");
+            return new ResponseEntity<>(resp, HttpStatus.UNAUTHORIZED);
+        }
+    }
+
 
     // to Admin only but needs JWT token in header to access this page
     @GetMapping("/admin")
