@@ -60,4 +60,42 @@ Step to implement Spring security package in our project
     7. Configure filter chain in SecurityConfig to include custom filters.
     8. Test the implementation using Postman or any API testing tool.
 
+Conclusion :
+    JWTGeneration should not be used as filter
+    Use in Util package
+
+---------------- Logging ------------------------
+
+Logging is essential for monitoring applications, troubleshooting, and auditing.
+SLF4J stands for Simple Logging Facade for Java. Facade is like a plugin
+It acts as an abstraction layer for various logging frameworks, allowing developers to plug in the desired logging framework at deployment time without changing the source code.
+Logback is one of the logging frameworks that can be used behind SLF4J. It is considered a successor to Log4J and provides powerful and flexible logging capabilities.
+In Spring Boot applications, SLF4J is commonly used with Logback as the default logging implementation.
+Types of Logging Framework:
+    Java Util Log (JUL) - BASIC
+    Logback - popular
+    Log4J - Advanced and complex
+
+Logging levels in order of severity:
+    - ERROR: For serious issues that might cause the application to fail.
+    - WARN: Indicates a potential problem or important situation that is not an error.
+    - INFO: General information about the application's running state.
+    - DEBUG: Used for detailed debugging information.
+    - TRACE: More fine-grained than DEBUG, used for tracing program execution.
+By default, INFO, WARN, and ERROR are enabled.To enable DEBUG or TRACE, you need to configure the application properties.
+
+Logging in Spring Boot:
+    1. Add SLF4J and Logback dependencies (usually included by default in Spring Boot).
+    2. Use the LoggerFactory to create a logger instance in your classes.
+    3. Use the logger to log messages at different levels (INFO, DEBUG, ERROR, etc.).
+    4. Configure logging settings in application.properties or application.yml if needed.
+
+Application.properties  example:
+    Sets the root logging level to INFO for all loggers.
+    Enables DEBUG logging for the in.ratansgh.JWT_R4J package and for Spring Security.
+    Logs are written to a file named application.log.
+    Customizes the console log format to show date, time, and message.
+    Customizes the file log format to show date, time, thread, log level, logger name, and message.
+
+Enable only TRACE this will enable all levels -- >>logging.level.root=TRACE
 
