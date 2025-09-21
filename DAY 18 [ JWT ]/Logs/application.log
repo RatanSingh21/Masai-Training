@@ -180,3 +180,8 @@
 2025-09-22 00:04:40 [http-nio-8080-exec-7] DEBUG o.s.s.w.s.HttpSessionRequestCache - Saved request http://localhost:8080/error?continue to session
 2025-09-22 00:04:40 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint - Trying to match using RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]
 2025-09-22 00:04:40 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint - No match found. Using default entry point org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint@7faca4a0
+2025-09-22 00:12:26 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-22 00:12:26 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-09-22 00:12:26 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-22 00:12:26 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-09-22 00:12:26 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
