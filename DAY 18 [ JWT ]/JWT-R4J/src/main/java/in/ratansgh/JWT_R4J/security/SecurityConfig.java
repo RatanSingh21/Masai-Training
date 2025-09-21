@@ -25,6 +25,9 @@ public class SecurityConfig {
                     .requestMatchers("/welcome", "/register", "/login").permitAll()
                     .requestMatchers("/admin").hasRole("ADMIN")
                         .requestMatchers("/user").hasRole("USER")
+
+                        // Swagger UI access
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
             )
 //                .addFilterAfter(new JwtGeneratorFilter(), BasicAuthenticationFilter.class) // Add JwtGeneratorFilter after BasicAuthenticationFilter to generate JWT after successful authentication
                 .addFilterBefore(new JwtValidatorFilter(), BasicAuthenticationFilter.class) // Add JwtValidatorFilter before BasicAuthenticationFilter to validate JWT before authentication
@@ -47,6 +50,5 @@ public class SecurityConfig {
                 .and()
                 .build();
     }
-
 
 }

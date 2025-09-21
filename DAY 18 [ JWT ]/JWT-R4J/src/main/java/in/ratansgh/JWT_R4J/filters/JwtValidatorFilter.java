@@ -76,11 +76,21 @@ public class JwtValidatorFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
+//    @Override
+//    public boolean shouldNotFilter(HttpServletRequest request) {
+//        String path = request.getServletPath();
+//        // Do not validate for /login and /register
+//        return path.equals("/login") || path.equals("/register");
+//    }
+
     @Override
-    public boolean shouldNotFilter(HttpServletRequest request) {
-        String path = request.getServletPath();
-        // Do not validate for /login and /register
-        return path.equals("/login") || path.equals("/register");
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String path = request.getRequestURI();
+        return path.startsWith("/swagger-ui") ||
+                path.equals("/swagger-ui.html") ||
+                path.startsWith("/v3/api-docs") ||
+                path.startsWith("/api-docs");
     }
+
 
 }
