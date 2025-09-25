@@ -21,19 +21,19 @@ public class BookController {
         return bookRepository.findAll();
     }
 
-    @PreAuthorize("hasRole('STUDENT')")
+    @PreAuthorize("hasRole('STUDENT') or hasRole('LIBRARIAN') or hasRole('ADMIN')")
     @GetMapping
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
     }
 
-    @PreAuthorize("hasRole('STUDENT')")
+    @PreAuthorize("hasRole('STUDENT') or hasRole('LIBRARIAN') or hasRole('ADMIN')")
     @GetMapping("/{id}")
     public Book getBook(@PathVariable Long id) {
         return bookRepository.findById(id).orElse(null);
     }
 
-    @PreAuthorize("hasRole('STUDENT')")
+    @PreAuthorize("hasRole('STUDENT') or hasRole('LIBRARIAN') or hasRole('ADMIN')")
     @PostMapping("/{id}/reserve")
     public String reserveBook(@PathVariable Long id) {
         Optional<Book> bookOpt = bookRepository.findById(id);
@@ -50,14 +50,14 @@ public class BookController {
         return "Book not found";
     }
 
-    @PreAuthorize("hasRole('LIBRARIAN')")
+    @PreAuthorize("hasRole('LIBRARIAN') or hasRole('ADMIN')")
     @PostMapping
     public String addBook(@RequestBody Book book) {
         bookRepository.save(book);
         return "Book added";
     }
 
-    @PreAuthorize("hasRole('LIBRARIAN')")
+    @PreAuthorize("hasRole('LIBRARIAN') or hasRole('ADMIN')")
     @PutMapping("/{id}")
     public String updateBook(@PathVariable Long id, @RequestBody Book book) {
         if (bookRepository.existsById(id)) {

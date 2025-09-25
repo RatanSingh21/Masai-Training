@@ -36,15 +36,16 @@ public class SecurConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/about", "/login", "/books/public").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/books", "/books/{id}", "/books/{id}/reserve").hasRole("STUDENT")
-                        .requestMatchers(HttpMethod.POST, "/books").hasRole("LIBRARIAN")
-                        .requestMatchers(HttpMethod.PUT, "/books/{id}").hasRole("LIBRARIAN")
-                        .requestMatchers(HttpMethod.GET, "/reservations").hasRole("LIBRARIAN")
-                        .requestMatchers(HttpMethod.POST, "/reservations/{id}/approve").hasRole("LIBRARIAN")
+                        .requestMatchers(HttpMethod.GET, "/books", "/books/{id}", "/books/{id}/reserve").hasAnyRole("STUDENT", "LIBRARIAN", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/books").hasAnyRole("LIBRARIAN", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/books/{id}").hasAnyRole("LIBRARIAN", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/reservations").hasAnyRole("LIBRARIAN", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/reservations/{id}/approve").hasAnyRole("LIBRARIAN", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/books/{id}").hasRole("ADMIN")
                         .requestMatchers("/users", "/admin/reports").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
+
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/perform_login")

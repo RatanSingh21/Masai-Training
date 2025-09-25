@@ -27,13 +27,13 @@ public class ReservationController {
         )));
     }
 
-    @PreAuthorize("hasRole('LIBRARIAN')")
+    @PreAuthorize("hasRole('LIBRARIAN') or hasRole('ADMIN')")
     @GetMapping
     public List<Map<String, Object>> getAllReservations() {
         return reservations;
     }
 
-    @PreAuthorize("hasRole('LIBRARIAN')")
+    @PreAuthorize("hasRole('LIBRARIAN') or hasRole('ADMIN')")
     @PostMapping("/{id}/approve")
     public String approveReservation(@PathVariable Long id, @RequestParam boolean approve) {
         for (Map<String, Object> reservation : reservations) {
