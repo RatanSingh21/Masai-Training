@@ -3,6 +3,7 @@ package in.ratansgh.JWT_R4J.controller;
 import in.ratansgh.JWT_R4J.entity.Employee;
 import in.ratansgh.JWT_R4J.repository.EmployeeRepo;
 import in.ratansgh.JWT_R4J.util.JWT.JwtGeneration;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -28,6 +29,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
+@Tag(name = "Employee Controller", description = "Endpoints for user authentication and management")
 public class EmployeeController {
 
     private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);

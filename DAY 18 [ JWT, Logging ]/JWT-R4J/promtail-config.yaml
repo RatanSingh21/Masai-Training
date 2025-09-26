@@ -1,0 +1,23 @@
+#  Configures Promtail’s server settings.
+server:
+  http_listen_port: 9080 # Port for Promtail's HTTP server.
+  grpc_listen_port: 0 # Disables gRPC server.
+
+# Tracks the last read position in log files.positions:
+  filename: /tmp/positions.yaml # File to store log file read positions.
+
+# Defines where Promtail sends the collected logs.
+clients:
+  - url: http://loki:3100/loki/api/v1/push # Sends logs to Loki at the specified URL.
+
+# Configures how and what logs Promtail collects.
+scrape_configs:
+  - job_name: springboot_app # Names this scrape job springboot_app.
+
+    # Specifies static targets and labels.
+    static_configs:
+      - targets:
+          - localhost # List of hosts to scrape (here, just localhost).
+        labels:
+          job: springboot_logs # Sets the job label to springboot_logs.
+          __path__: /var/log/my-app/*.log # Specifies the path pattern for log files to collect.
