@@ -29,7 +29,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
-@Tag(name = "Employee Controller", description = "Endpoints for user authentication and management")
+@Tag(name = "Employee Controller", description = "Endpoints for Employee authentication and management")
 public class EmployeeController {
 
     private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
