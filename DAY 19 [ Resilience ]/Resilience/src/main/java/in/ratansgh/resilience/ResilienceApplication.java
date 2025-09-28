@@ -1,4 +1,4 @@
-package in.ratansgh.Resilience;
+package in.ratansgh.resilience;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

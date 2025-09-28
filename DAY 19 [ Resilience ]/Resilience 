@@ -1,0 +1,78 @@
+Resilience4j is a fault tolerance library designed for Java applications to handle failure scenarios gracefully.
+It provides modules for:
+    Circuit Breaker: Prevents repeated execution of failing operations, allowing recovery time.
+    Rate Limiter: Controls the rate of requests to avoid overwhelming resources.
+    Retry: Automatically retries failed operations a configurable number of times.
+    Bulkhead: Isolates failures by limiting concurrent access to parts of the system.
+    Time Limiter: Sets a maximum duration for operations, failing them if they exceed the limit.
+
+-------------------- Rate limiter --------------------
+
+A Rate Limiter is a component that controls the rate of requests to a resource, ensuring that the resource is not overwhelmed by too many requests in a short period of time.
+It helps to maintain system stability and performance by limiting the number of requests that can be processed within a specified time frame.
+
+Example: Limit the number of calls to a method to 10 calls per second.
+Configure Application Properties as follows:
+        resilience4j.ratelimiter.instances.{RateLimiter Name}.limit-for-period=10 --- >> Number of calls that can be made in one refresh period
+        resilience4j.ratelimiter.instances.{RateLimiter Name}.limit-refresh-period=1s -->> The duration of the refresh period
+        resilience4j.ratelimiter.instances.{RateLimiter Name}.timeout-duration=0ms -->> Maximum time to wait for a permission
+Explanation: Only 2 requests to RegisterUser are allowed every 5 seconds. If more than 2 requests arrive within 5 seconds, extra requests are instantly rejected (no waiting).
+
+Example
+Configure Application Properties as follows:
+        resilience4j.ratelimiter.instances.{RateLimiter Name}.limit-for-period=10
+        resilience4j.ratelimiter.instances.{RateLimiter Name}.limit-refresh-period=1s
+        resilience4j.ratelimiter.instances.{RateLimiter Name}.timeout-duration=5ms
+Explanation: If more than 10 requests arrive within 1 second, extra requests will wait up to 5 milliseconds for a permission. If a permission is not granted within this time, the request is rejected.
+
+Define second "s" or "ms" properly by default it is in milliseconds.
+
+-------------------- Circuit Breaker --------------------
+A Circuit Breaker is a design pattern used to detect failures and encapsulate the logic of preventing a failure from constantly recurring during maintenance, temporary external system failure, or unexpected system difficulties.
+It works by monitoring the number of recent failures and, when a certain threshold is reached, it "trips" the circuit, preventing further calls to the failing service for a specified period of time.
+After this period, the circuit breaker allows a limited number of test requests to pass through. If these requests succeed, the circuit breaker resets and allows normal traffic to resume. If they fail, the circuit remains open.
+
+Circuit Breaker Flow:
+    Closed: All calls pass through.
+    Open: Calls to the external service are blocked after failure threshold is reached.
+    Half-Open: A limited number of test calls are allowed after a wait period to check if service has recovered.
+
+Fallback Method:
+    A fallback method is an alternative logic that executes when the main operation fails or the circuit breaker is open.
+
+The return type of the fallback method must match the return type of the main method for Resilience4j's @CircuitBreaker annotation.
+This ensures the fallback can seamlessly replace the main method's response when the circuit breaker is open or an exception occurs.
+In my case, both methods return ResponseEntity<Map<String, Object>>, which is correct and mandatory for proper fallback execution.
+
+Example: Protect the MyCircuitBreaker API from repeated failures.
+    resilience4j.circuitbreaker.instances.MyCircuitBreaker.register-health-indicator=true   --- >> Exposes the circuit breaker's health status via Actuator endpoints
+    resilience4j.circuitbreaker.instances.MyCircuitBreaker.sliding-window-type=COUNT_BASED --- >> Uses a fixed number of recent calls to evaluate failures
+    resilience4j.circuitbreaker.instances.MyCircuitBreaker.failure-rate-threshold=50        --- >> If 50% or more calls fail, the circuit breaker opens
+    resilience4j.circuitbreaker.instances.MyCircuitBreaker.wait-duration-in-open-state=10s  --- >> Stays open for 10 seconds before allowing test calls
+    resilience4j.circuitbreaker.instances.MyCircuitBreaker.sliding-window-size=5            --- >> Evaluates the last 5 calls to determine state
+
+Explanation: If 3 out of the last 5 calls to MyCircuitBreaker fail (failure rate ≥ 50%), the circuit breaker transitions to OPEN state and blocks further calls for 10 seconds.
+After 10 seconds, it moves to HALF_OPEN state and allows limited test calls. If these succeed, it resets to CLOSED; if they fail, it reopens.
+The health status is available via /actuator/circuitbreakers.
+
+-------------------- Health Actuator --------------------
+
+Spring Boot Actuator provides a /health endpoint that gives information about the health of the application.
+By default, it shows a simple status (UP or DOWN).
+To include Resilience4j Circuit Breaker status in the health check, you need to add the Resilience4j Spring Boot Actuator dependency to your project.
+When we access the /actuator/health endpoint,. It shows:
+    "status": "UP": The application is healthy.
+    "db": PostgreSQL database is connected and healthy.
+    "diskSpace": Sufficient disk space is available.
+    "ping": Basic liveness check passed.
+    "ssl": SSL configuration is valid.
+
+When we access the /actuator/circuitbreakers endpoint, it shows:
+    "name": The name of the circuit breaker.
+    "state": The current state of the circuit breaker (CLOSED, OPEN, HALF_OPEN).
+    "failureRate": The percentage of failed calls.
+    "slowCallRate": The percentage of slow calls.
+    "bufferedCalls": The number of calls recorded in the buffer.
+    "maxBufferedCalls": The maximum number of calls that can be recorded in the buffer.
+    "maxWaitDurationInHalfOpenState": The maximum wait duration in the half-open state before transitioning to open state if a call fails.
+

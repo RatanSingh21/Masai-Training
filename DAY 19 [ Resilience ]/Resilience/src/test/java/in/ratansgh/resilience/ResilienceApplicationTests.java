@@ -1,4 +1,4 @@
-package in.ratansgh.Resilience;
+package in.ratansgh.resilience;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
