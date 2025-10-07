@@ -1,33 +1,26 @@
-version: "3.8" # Specifies the Docker Compose file format version.
-
-services:  # Defines the services (containers) to be run.
-
-  # Loki service for log aggregation.
+version: "3.8"
+services:
   loki:
-    image: grafana/loki:latest # Uses the latest Loki image from Docker Hub.
+    image: grafana/loki:latest
     ports:
-      - "3100:3100" # Maps port 3100 on host to 3100 in the container.
-    command: -config.file=/etc/loki/local-config.yaml # Runs Loki with the specified config file.
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
     volumes:
-      - ./loki-config.yaml:/etc/loki/local-config.yaml # Mounts your local Loki config file into the container. myfilepath: ./loki-config.yaml
+      - ./loki-config.yaml:/etc/loki/local-config.yaml
 
-  # Promtail service for collecting and shipping logs to Loki.
   promtail:
-    image: grafana/promtail:latest  # Uses the latest Promtail image.
-    command: -config.file=/etc/promtail/config.yaml # Runs Promtail with the specified config file.
+    image: grafana/promtail:latest
     volumes:
-      - ./Logs:/var/log/my-app # Mounts your local Logs directory to the container for log access. myfilepath: ./Logs
-      - ./promtail-config.yaml:/etc/promtail/config.yaml # Mounts your local Promtail config file into the container. myfilepath: ./promtail-config.yaml
+      - ./logs:/var/log/my-app
+      - ./promtail-config.yaml:/etc/promtail/config.yaml
+    command: -config.file=/etc/promtail/config.yaml
 
-  # Grafana service for visualizing logs and metrics.
   grafana:
-    image: grafana/grafana:latest # Uses the latest Grafana image.
+    image: grafana/grafana:latest
     ports:
-      - "3000:3000" # Maps port 3000 on host to 3000 in the container. Grafana's default port is 3000.
-
-    # Sets environment variables for Grafana admin user credentials.
+      - "3000:3000"
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
     depends_on:
-      - loki # Ensures Grafana starts after Loki is up and running.
+      - loki
