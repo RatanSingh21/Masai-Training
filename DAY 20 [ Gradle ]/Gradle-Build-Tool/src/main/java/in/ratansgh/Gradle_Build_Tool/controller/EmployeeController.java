@@ -2,6 +2,7 @@ package in.ratansgh.Gradle_Build_Tool.controller;
 
 import in.ratansgh.Gradle_Build_Tool.entities.Employee;
 import in.ratansgh.Gradle_Build_Tool.service.EmployeeService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@Tag(name = "Employee", description = "Operations related to Employee management")
 @RestController
 public class EmployeeController {
 
