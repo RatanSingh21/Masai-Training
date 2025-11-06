@@ -12,28 +12,25 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/employees")
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
-    @Autowired
-    private EmployeeRepository employeeRepository;
-
-    @GetMapping("/employees/{id}")
-    public ResponseEntity<Employee> getEmployeeByID(@PathVariable("id") Long id){
-        return employeeService.getEmployeeById(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
+        try {
+            Employee employee = employeeService.getEmployeeById(id);
+            return ResponseEntity.ok(employee);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @GetMapping("/employee/{department}")
-    public ResponseEntity<List<Employee>> getEmployeesByDepartment(@PathVariable("department")  String department){
-        return ResponseEntity.ok(employeeService.getByDepartment(department));
+    @GetMapping("/department/{dept}")
+    public ResponseEntity<List<Employee>> getEmployeesByDepartment(@PathVariable("dept") String department) {
+        List<Employee> employees = employeeService.getEmployeesByDepartment(department);
+        return ResponseEntity.ok(employees);
     }
-
-    @PostMapping("employee/add")
-    public ResponseEntity<String> addEmployee (@RequestBody Employee employee){
-        employeeRepository.save(employee);
-        return ResponseEntity.ok("Employee ADDEED SUCCESSFULLY");
-    }
-
 }

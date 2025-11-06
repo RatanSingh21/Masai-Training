@@ -12,15 +12,15 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-   @Autowired
+    @Autowired
     private EmployeeRepository employeeRepository;
 
-   public ResponseEntity<Employee> getEmployeeById (Long id ){
-       return employeeRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-   }
+    public Employee getEmployeeById(Long id) {
+        return employeeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Employee not found"));
+    }
 
-   public List<Employee> getByDepartment (String department) {
-       return employeeRepository.findByDepartment(department);
-   }
-
+    public List<Employee> getEmployeesByDepartment(String department) {
+        return employeeRepository.findByDepartment(department);
+    }
 }
