@@ -4,7 +4,7 @@ target/
 .gitignore
 README.md
 *.md
-.github/
+../../.github/
 *.log
 .idea/
 *.iml
