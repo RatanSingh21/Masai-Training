@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DAY 22 Unit Testing/Assignment-UT-01/Assignment-UT-01.iml" filepath="$PROJECT_DIR$/DAY 22 Unit Testing/Assignment-UT-01/Assignment-UT-01.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/HDFCLIFE MASAI TRAINING.iml" filepath="$PROJECT_DIR$/.idea/HDFCLIFE MASAI TRAINING.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 15 [ Dependency Injection ]/MavenHandsOn/MavenHandsOn.iml" filepath="$PROJECT_DIR$/DAY 15 [ Dependency Injection ]/MavenHandsOn/MavenHandsOn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DAY 26 [ Microservices ] /Microservices/Microservices.iml" filepath="$PROJECT_DIR$/DAY 26 [ Microservices ] /Microservices/Microservices.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAY 16 [ Springboot CRUD ]/demo/demo.iml" filepath="$PROJECT_DIR$/DAY 16 [ Springboot CRUD ]/demo/demo.iml" />
     </modules>
   </component>

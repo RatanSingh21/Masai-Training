@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Assignment-UT-01" />
+        <module name="Assignment" />
         <module name="Assignment06" />
         <module name="Error_Handling" />
         <module name="UT-Assignment" />
@@ -21,6 +21,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Assignment-UT-01" target="21" />
       <module name="Assignment07" target="24" />
       <module name="Assignment1" target="24" />
       <module name="Assignment_Maven" target="24" />
@@ -37,6 +38,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Assignment" options="-parameters" />
       <module name="Assignment-UT-01" options="-parameters" />
       <module name="Assignment-UT-02" options="-parameters" />
       <module name="Microservices" options="-parameters" />
