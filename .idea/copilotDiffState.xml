@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/DAY 35 [ CI-CD ]/Assignment/README.md">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/DAY 35 [ CI-CD ]/Assignment/README.md" />
+              <option name="updatedContent" value="# DAY 35 CI/CD Assignment&#10;&#10;This repository contains a Spring Boot application with automated CI/CD pipeline using GitHub Actions.&#10;&#10;## CI/CD Pipeline Features&#10;&#10;The GitHub Actions workflow (`cicd-pipeline.yml`) includes the following steps:&#10;&#10;1. **Automated Testing** - Runs Maven tests&#10;2. **Build Artifact** - Creates JAR file using Maven&#10;3. **Docker Image Creation** - Builds Docker image&#10;4. **Docker Hub Deployment** - Pushes image to Docker Hub with latest tag and SHA-based tag&#10;&#10;## Path-Based Automation&#10;&#10;The pipeline is configured to **only trigger for changes in the `DAY 35 [ CI-CD ]/Assignment/` folder**. This means:&#10;&#10;- ✅ Changes to files in `DAY 35 [ CI-CD ]/Assignment/` will trigger the pipeline&#10;- ❌ Changes to other folders (DAY 1, DAY 2, etc.) will NOT trigger this pipeline&#10;&#10;## Required Secrets&#10;&#10;To use this pipeline, you need to set up the following GitHub repository secrets:&#10;&#10;1. `DOCKERHUB_USERNAME` - Your Docker Hub username&#10;2. `DOCKERHUB_TOKEN` - Your Docker Hub access token&#10;&#10;### Setting up Docker Hub Secrets:&#10;&#10;1. Go to your GitHub repository&#10;2. Navigate to Settings → Secrets and variables → Actions&#10;3. Click &quot;New repository secret&quot;&#10;4. Add both `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN`&#10;&#10;## How to Use&#10;&#10;1. Make changes to your Spring Boot application in the `DAY 35 [ CI-CD ]/Assignment/` folder&#10;2. Commit and push to the `main` branch&#10;3. GitHub Actions will automatically:&#10;   - Run tests&#10;   - Build the application&#10;   - Create and push Docker image to Docker Hub&#10;&#10;## Local Development&#10;&#10;To run the application locally:&#10;&#10;```bash&#10;# Navigate to the assignment folder&#10;cd &quot;DAY 35 [ CI-CD ]/Assignment&quot;&#10;&#10;# Run tests&#10;mvn test&#10;&#10;# Build the application&#10;mvn package&#10;&#10;# Run the application&#10;java -jar target/Assignment-0.0.1-SNAPSHOT.jar&#10;```&#10;&#10;## Docker&#10;&#10;To build and run using Docker:&#10;&#10;```bash&#10;# Build Docker image&#10;docker build -t day35-cicd-demo .&#10;&#10;# Run container&#10;docker run -p 8080:8080 day35-cicd-demo&#10;```&#10;&#10;## Application Details&#10;&#10;- **Framework**: Spring Boot 3.5.6&#10;- **Java Version**: 21&#10;- **Build Tool**: Maven&#10;- **Port**: 8080 (default Spring Boot port)" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
