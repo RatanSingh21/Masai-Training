@@ -1,0 +1,47 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: JDK 21 Setup
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Run Tests
+        run: mvn test
+
+      - name: Build JAR
+        run: mvn package -DskipTests
+
+      - name: Build Docker Image
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/cicd-demo:latest .
+
+      - name: Dockerhub Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Push Image To Dockerhub
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/cicd-demo:latest
+
+      - name: Tag and push with SHA
+        run: |
+            docker tag ${{ secrets.DOCKERHUB_USERNAME }}/cicd-demo:latest ${{ secrets.DOCKERHUB_USERNAME }}/cicd-demo:${{ github.sha }}
+            docker push ${{ secrets.DOCKERHUB_USERNAME }}/cicd-demo:${{ github.sha }}
+
+
