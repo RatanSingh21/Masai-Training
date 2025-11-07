@@ -31,10 +31,10 @@ jobs:
           echo "All changed files: $CHANGED_FILES"
           
           if echo "$CHANGED_FILES" | grep -q "^DAY 35 \[ CI-CD \]/Assignment/"; then
-            echo "✅ DAY 35 Assignment files detected in changes"
+            echo " DAY 35 Assignment files detected in changes"
             echo "day35=true" >> $GITHUB_OUTPUT
           else
-            echo "❌ No DAY 35 Assignment files found in changes"
+            echo " No DAY 35 Assignment files found in changes"
             echo "day35=false" >> $GITHUB_OUTPUT
           fi
 
