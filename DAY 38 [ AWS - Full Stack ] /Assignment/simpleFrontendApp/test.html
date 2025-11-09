@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backend Test</title>
+</head>
+<body style="text-align:center; margin-top:50px; font-family: Arial, sans-serif;">
+  <h2>Backend Connection Test</h2>
+  <button id="testBackend" style="padding: 10px 20px; font-size: 16px; margin: 10px;">Test Backend Connection</button>
+  <div id="result" style="margin-top: 20px; font-size: 18px;"></div>
+
+  <div style="margin-top: 30px;">
+    <a href="signup.html" style="margin: 10px; text-decoration: none; color: blue;">Go to Signup</a> |
+    <a href="index.html" style="margin: 10px; text-decoration: none; color: blue;">Go to Login</a>
+  </div>
+
+  <script>
+    // Replace this with your ECS backend public URL
+    const API_BASE = "http://YOUR_ECS_PUBLIC_IP:8080";
+
+    document.getElementById("testBackend").addEventListener("click", async () => {
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "Testing connection...";
+
+      try {
+        const response = await fetch(`${API_BASE}/test`);
+        const text = await response.text();
+
+        if (response.ok) {
+          resultDiv.innerHTML = `✅ Success: ${text}`;
+          resultDiv.style.color = "green";
+        } else {
+          resultDiv.innerHTML = `❌ Error: ${response.status} - ${text}`;
+          resultDiv.style.color = "red";
+        }
+      } catch (error) {
+        resultDiv.innerHTML = `❌ Connection Failed: ${error.message}`;
+        resultDiv.style.color = "red";
+      }
+    });
+  </script>
+</body>
+</html>

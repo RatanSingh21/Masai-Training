@@ -1,0 +1,27 @@
+{
+  "serviceName": "simple-backend-service",
+  "taskDefinition": "simple-backend-task",
+  "cluster": "simple-backend-cluster",
+  "launchType": "FARGATE",
+  "desiredCount": 1,
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "subnets": [
+        "subnet-xxxxxxxx",
+        "subnet-yyyyyyyy"
+      ],
+      "securityGroups": [
+        "sg-xxxxxxxxx"
+      ],
+      "assignPublicIp": "ENABLED"
+    }
+  },
+  "loadBalancers": [
+    {
+      "targetGroupArn": "arn:aws:elasticloadbalancing:YOUR_REGION:YOUR_ACCOUNT_ID:targetgroup/simple-backend-tg/xxxxxxxxxxxxxxxx",
+      "containerName": "simple-backend-container",
+      "containerPort": 8080
+    }
+  ]
+}
+
